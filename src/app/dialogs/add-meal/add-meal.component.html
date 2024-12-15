@@ -1,0 +1,225 @@
+<div mat-dialog-content class="container">
+  <div class="row mt-3">
+    <h2 class="text-primary">{{ formType}} food</h2>
+  </div>
+  <div class="row">
+    <form [formGroup]="mealForm">
+
+      <div class="form-group position-relative">
+        <label class="text-primary" for="barcode">Barcode<fa-icon [ngStyle]="{'color': 'var(--primary-color)', 'cursor': 'pointer', 'margin-left':'10px'}" [icon]="faBarcode"></fa-icon></label>
+        <div class="position-relative">
+          <!-- Input field -->
+          <input
+            type="text"
+            class="form-control pr-5"
+            id="barcode"
+            formControlName="barcode"
+            (keyup.enter)="onBarcodeSearch()"
+            placeholder="e.g., 737628064502"
+            [ngClass]="{
+              'is-invalid': fc['barcode'].touched && fc['barcode'].invalid
+            }"
+          />
+          <!-- Icon inside the input -->
+          <fa-icon
+            class="input-icon"
+            [ngStyle]="{'color': 'var(--primary-color)', 'cursor': 'pointer'}"
+            (click)="onBarcodeSearch()"
+            [icon]="faSearch"
+          ></fa-icon>
+        </div>
+        <p class="text-info">Enter the barcode and press Enter or click the search icon to find the product.</p>
+        <p class="text-warning">Barcode not found? <a class="text-warning" target="/blank" href="https://world.openfoodfacts.org/contribute">Add your own product to our database</a> or add the details mannually</p>
+      </div>
+      
+      <div class="form-group">
+        <label class="text-primary" for="nome">Food name</label>
+        <input
+            type="text"
+            class="form-control"
+            id="nome"
+            formControlName="nome"
+            [ngClass]="{
+                'is-invalid': fc['nome'].touched && fc['nome'].invalid
+            }"
+            required
+            placeholder="Food name"
+        />
+        <div
+          class="text-danger"
+          *ngIf="fc['nome'].touched && fc['nome'].invalid"
+        >
+          <div *ngIf="fc['nome'].errors?.['required']">
+            Enter the food name
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label class="text-primary" for="categoria">Meal</label>
+        <select
+          class="form-control"
+          id="categoria"
+          formControlName="categoria"
+          [ngClass]="{
+            'is-invalid': fc['categoria'].touched && fc['categoria'].invalid
+          }"
+          required
+          placeholder="Meal"
+        >
+          <option selected value="">Select...</option>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Snack">Snack</option>
+        </select>
+        <div
+          class="text-danger"
+          *ngIf="fc['categoria'].touched && fc['categoria'].invalid"
+        >
+          <div *ngIf="fc['categoria'].errors?.['required']">
+            Select a meal
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="text-primary" for="quantidade">Quantity (g)</label>
+        <input
+            min="1"
+            type="number"
+            class="form-control"
+            id="quantidade"
+            formControlName="quantidade"
+            [ngClass]="{
+                'is-invalid': fc['quantidade'].touched && fc['quantidade'].invalid
+            }"
+            (change)="updateFormWithProductDetails()"
+            required
+            placeholder="Quantity (g)"
+        />
+        <div
+          class="text-danger"
+          *ngIf="fc['quantidade'].touched && fc['quantidade'].invalid"
+        >
+          <div *ngIf="fc['quantidade'].errors?.['required']">
+            Enter the quantity in grams
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="text-primary" for="calorias">Calories (kcal)</label>
+        <input
+            min="0"
+            type="number"
+            class="form-control"
+            id="calorias"
+            formControlName="calorias"
+            [ngClass]="{
+                'is-invalid': fc['calorias'].touched && fc['calorias'].invalid
+            }"
+            required
+            placeholder="Calories (kcal)"
+        />
+        <div
+          class="text-danger"
+          *ngIf="fc['calorias'].touched && fc['calorias'].invalid"
+        >
+          <div *ngIf="fc['calorias'].errors?.['required']">
+            Enter the number of calories
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="text-primary" for="proteinas">Proteins (g)</label>
+        <input
+            min="0"
+            type="number"
+            class="form-control"
+            id="proteinas"
+            formControlName="proteinas"
+            [ngClass]="{
+                'is-invalid': fc['proteinas'].touched && fc['proteinas'].invalid
+            }"
+            required
+            placeholder="Proteins (g)"
+        />
+        <div
+          class="text-danger"
+          *ngIf="fc['proteinas'].touched && fc['proteinas'].invalid"
+        >
+          <div *ngIf="fc['proteinas'].errors?.['required']">
+            Enter the number of proteins
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="text-primary" for="gorduras">Fats (g)</label>
+        <input
+            min="0"
+            type="number"
+            class="form-control"
+            id="gorduras"
+            formControlName="gorduras"
+            [ngClass]="{
+                'is-invalid': fc['gorduras'].touched && fc['gorduras'].invalid
+            }"
+            required
+            placeholder="Fats (g)"
+        />
+        <div
+          class="text-danger"
+          *ngIf="fc['gorduras'].touched && fc['gorduras'].invalid"
+        >
+          <div *ngIf="fc['gorduras'].errors?.['required']">
+            Enter the number of fats
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="text-primary" for="hidratos">Carbohydrates (g)</label>
+        <input
+            min="0"
+            type="number"
+            class="form-control"
+            id="hidratos"
+            formControlName="hidratos"
+            [ngClass]="{
+                'is-invalid': fc['hidratos'].touched && fc['hidratos'].invalid
+            }"
+            required
+            placeholder="Carbohydrates (g)"
+        />
+        <div
+          class="text-danger"
+          *ngIf="fc['hidratos'].touched && fc['hidratos'].invalid"
+        >
+          <div *ngIf="fc['hidratos'].errors?.['required']">
+            Enter the number of carbohydrates
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div mat-dialog-actions class="mt-3">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <button
+      (click)="onNoClick()"
+      class="btn btn-secondary btn-secondary-theme mb-3"
+    >
+      Go back
+    </button>
+    <button
+      (click)="onSubmit()"
+      [disabled]="mealForm.invalid"
+      class="btn btn-primary btn-primary-theme mb-3"
+    >
+    {{ formType}}
+    </button>
+  </div>
+</div>

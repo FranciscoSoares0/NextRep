@@ -1,0 +1,16 @@
+.percentageContainer {
+  border-radius: 12px;
+  width: 100px;
+  text-align: center;
+  margin: auto;
+}
+
+canvas {
+  width: 100% !important;
+  color: var(--secondary-color) !important; /* Ensure canvas respects white text */
+}
+
+canvas {
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: pixelated; /* You can experiment with these for the best effect */
+}

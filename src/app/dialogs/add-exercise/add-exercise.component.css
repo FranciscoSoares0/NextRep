@@ -1,0 +1,17 @@
+.text-primary{
+    color: #212529 !important;
+}
+
+
+
+input[type="date"],input[type="text"], input[type="password"],input[type="email"], input[type="password"],input[type="number"],input:focus:not([type="file"]),select{
+    background-color: white !important;
+    color: #004AAD !important;
+    border: 1px solid #004AAD !important;
+    height: 60px;
+    font-size: 1.2rem !important;
+}
+
+input::placeholder{
+    color: #004AAD !important;
+}

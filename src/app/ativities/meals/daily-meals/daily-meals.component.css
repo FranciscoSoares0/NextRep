@@ -1,0 +1,11 @@
+.above{
+    color: var(--success-color);
+}
+
+.under{
+    color: var(--error-color);
+}
+
+th,td{
+    text-align: center;
+}

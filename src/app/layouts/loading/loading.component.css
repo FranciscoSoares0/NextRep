@@ -1,0 +1,9 @@
+.primary-color{
+    color: var(--primary-color);
+    width: 100px;
+    height: 100px;
+}
+
+.loadingLogo{
+    width: 250px;
+}

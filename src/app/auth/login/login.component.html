@@ -1,0 +1,76 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-2 col-lg-4"></div>
+    <div
+      class="col-8 col-lg-4 d-flex justify-content-center flex-column align-items-center"
+    >
+      <img class="mediumPageLogo" src="../../../assets/NextRep.png" />
+      <h1 class="mt-5 text-center">Sign In to NextRep</h1>
+      <div class="d-flex flex-column mt-3 align-items-center w-100">
+        <button type="button" (click)="continueWithGoogle()" class="registerProviderBtn mb-3"><fa-icon [ngStyle]="{'color': 'var(--primary-color)'}" class="me-3 socialIcon" [icon]="faGoogle"></fa-icon>Continue with Google</button>
+        <button type="button" (click)="continueWithFacebook()" class="registerProviderBtn mb-3"><fa-icon [ngStyle]="{'color': 'var(--primary-color)'}" class="me-3 socialIcon" [icon]="faFacebook"></fa-icon>Continue with Facebook</button>
+        <hr class="w-100"/>
+      </div>
+      
+      <form class="mt-3 w-100" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            placeholder="Email"
+            formControlName="email"
+            [ngClass]="{
+              'is-invalid': fc['email'].touched && fc['email'].invalid
+            }"
+            email
+          />
+          <div
+            class="text-danger"
+            *ngIf="fc['email'].touched && fc['email'].invalid"
+          >
+            <div *ngIf="fc['email'].errors?.['required']">Enter an email</div>
+            <div *ngIf="fc['email'].errors?.['email']">
+              Enter a valid email
+            </div>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="password">Palavra-passe</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            placeholder="Palavra-passe"
+            formControlName="password"
+            [ngClass]="{
+              'is-invalid': fc['password'].touched && fc['password'].invalid
+            }"
+          />
+          <div *ngIf="fc['password'].errors?.['required']">
+            <div
+              class="text-danger"
+              *ngIf="fc['password'].touched && fc['password'].invalid"
+            >
+              Enter a password
+            </div>
+          </div>
+        </div>
+        <button type="submit" [disabled] = 'loginForm.invalid' class="btn btn-primary btn-primary-theme mt-3 w-100">
+          Log In
+        </button>
+        <hr />
+        <div class="text-center">
+          <a routerLink="/forgot-password"
+            >Forgot your password?</a
+          >
+          <p class="mt-3">
+            Don't have an account? <a routerLink="/register">Sign up for NextRep</a>
+          </p>
+        </div>
+      </form>
+    </div>
+    <div class="col-2 col-lg-4"></div>
+  </div>
+</div>

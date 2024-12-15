@@ -1,0 +1,168 @@
+<div mat-dialog-content class="container">
+    <div class="row mt-3">
+      <h2 class="text-primary">{{ formType}} update</h2>
+    </div>
+    <div class="row">
+      <form [formGroup]="updateForm">
+        <div class="form-group">
+          <label class="text-primary" for="novoPeso">New Weight (kg)</label>
+          <input
+            min="1"
+            type="number"
+            class="form-control"
+            id="novoPeso"
+            formControlName="novoPeso"
+            placeholder="New Weight (kg)"
+            [ngClass]="{
+              'is-invalid': fc['novoPeso'].touched && fc['novoPeso'].invalid
+            }"
+            required
+          />
+          <div
+            class="text-danger"
+            *ngIf="fc['novoPeso'].touched && fc['novoPeso'].invalid"
+          >
+            <div *ngIf="fc['novoPeso'].errors?.['required']">
+              Enter your weight
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="text-primary" for="series">Torax (cm)</label>
+          <input
+              min="1"
+              type="number"
+              class="form-control"
+              id="torax"
+              formControlName="torax"
+              [ngClass]="{
+                  'is-invalid': fc['torax'].touched && fc['torax'].invalid
+              }"
+              required
+              placeholder="Torax (cm)"
+          />
+          <div
+            class="text-danger"
+            *ngIf="fc['torax'].touched && fc['torax'].invalid"
+          >
+            <div *ngIf="fc['torax'].errors?.['required']">
+              Enter a torax measurement
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label class="text-primary" for="quadril">Hips (cm)</label>
+          <input
+              min="0"
+              type="number"
+              class="form-control"
+              id="quadril"
+              formControlName="quadril"
+              [ngClass]="{
+                  'is-invalid': fc['quadril'].touched && fc['quadril'].invalid
+              }"
+              required
+              placeholder="Hips (cm)"
+          />
+          <div
+            class="text-danger"
+            *ngIf="fc['quadril'].touched && fc['quadril'].invalid"
+          >
+            <div *ngIf="fc['quadril'].errors?.['required']">
+              Enter a hips measurement
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label class="text-primary" for="cintura">Waist (cm)</label>
+          <input
+              min="0"
+              type="number"
+              class="form-control"
+              id="cintura"
+              formControlName="cintura"
+              [ngClass]="{
+                  'is-invalid': fc['cintura'].touched && fc['cintura'].invalid
+              }"
+              required
+              placeholder="Waist (cm)"
+          />
+          <div
+            class="text-danger"
+            *ngIf="fc['cintura'].touched && fc['cintura'].invalid"
+          >
+            <div *ngIf="fc['cintura'].errors?.['required']">
+              Enter a waist measurement
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="text-primary" for="braco">Arm (cm)</label>
+          <input
+              min="0"
+              type="number"
+              class="form-control"
+              id="braco"
+              formControlName="braco"
+              placeholder="Arm (cm)"
+              [ngClass]="{
+                  'is-invalid': fc['braco'].touched && fc['braco'].invalid
+              }"
+              required
+          />
+          <div
+            class="text-danger"
+            *ngIf="fc['braco'].touched && fc['braco'].invalid"
+          >
+            <div *ngIf="fc['braco'].errors?.['required']">
+              Enter an arm measurement
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="text-primary" for="coxa">Leg (cm)</label>
+          <input
+              min="0"
+              type="number"
+              class="form-control"
+              id="coxa"
+              formControlName="coxa"
+              placeholder="Leg (cm)"
+              [ngClass]="{
+                  'is-invalid': fc['coxa'].touched && fc['coxa'].invalid
+              }"
+              required
+          />
+          <div
+            class="text-danger"
+            *ngIf="fc['coxa'].touched && fc['coxa'].invalid"
+          >
+            <div *ngIf="fc['coxa'].errors?.['required']">
+              Enter a leg measurement
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div mat-dialog-actions class="mt-3">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <button
+        (click)="onNoClick()"
+        class="btn btn-secondary btn-secondary-theme mb-3"
+      >
+        Go back
+      </button>
+      <button
+        (click)="onSubmit()"
+        [disabled]="updateForm.invalid"
+        class="btn btn-primary btn-primary-theme mb-3"
+      >
+      {{ formType}}
+      </button>
+    </div>
+  </div>
+  

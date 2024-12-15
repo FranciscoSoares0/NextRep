@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row col-sm-4">
+    <input
+      id="dateField"
+      type="date"
+      [(ngModel)]="selectedDate"
+      (ngModelChange)="onDateChange()"
+      class="form-control"
+    />
+  </div>
+  <hr>
+  <div class="col-12 table-responsive">
+    <table class="table table-striped table-dark">
+      <thead>
+        <th scope="col" class="d-none d-sm-table-cell" style="width: 10%"></th>
+        <th scope="col" style="width: 18%">Calories<br>(kcal)</th>
+        <th scope="col" style="width: 18%">Proteins<br>(g)</th>
+        <th scope="col" style="width: 18%">Fats<br>(g)</th>
+        <th scope="col" style="width: 18%">Carbohydrates<br>(g)</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="d-none d-sm-table-cell">Total</td>
+          <td>{{totalCalorias}}</td>
+          <td>{{totalProteinas}}</td>
+          <td>{{totalGorduras}}</td>
+          <td>{{totalHidratos}}</td>
+        </tr>
+        <tr>
+          <td class="d-none d-sm-table-cell">Meta</td>
+          <td>{{userData.calorias}}</td>
+          <td>{{userData.proteinas}}</td>
+          <td>{{userData.gorduras}}</td>
+          <td>{{userData.hidratos}}</td>
+        </tr>
+        <tr>
+          <td class="d-none d-sm-table-cell">Remaining</td>
+          <td [ngClass]="{above: restantesCalorias > 0,under: restantesCalorias < 0}">{{restantesCalorias}}</td>
+          <td [ngClass]="{above: restantesProteinas > 0,under: restantesProteinas < 0}">{{restantesProteinas}}</td>
+          <td [ngClass]="{above: restantesGorduras > 0,under: restantesGorduras < 0}">{{restantesGorduras}}</td>
+          <td [ngClass]="{above: restantesHidratos > 0,under: restantesHidratos < 0}">{{restantesHidratos}}</td>
+        </tr>
+      </tbody>
+      
+    </table>
+  </div>
+  <hr>
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <button
+      type="submit"
+      class="btn btn-primary btn-primary-theme w-100"
+      (click)="openDialog()"
+    >
+      Add food
+    </button>
+    </div>
+    
+  </div>
+  <app-category-meals
+    [refeicoes]="pequenoAlmoco"
+    [categoria]="'Breakfast'"
+    [userID]="userID"
+  ></app-category-meals>
+  <app-category-meals
+    [refeicoes]="almoco"
+    [categoria]="'Lunch'"
+    [userID]="userID"
+  ></app-category-meals>
+  <app-category-meals
+    [refeicoes]="jantar"
+    [categoria]="'Dinner'"
+    [userID]="userID"
+  ></app-category-meals>
+  <app-category-meals
+    [refeicoes]="lanches"
+    [categoria]="'Snacks'"
+    [userID]="userID"
+  ></app-category-meals>
+</div>

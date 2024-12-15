@@ -1,1 +1,186 @@
 /* You can add global styles to this file, and also import other style files */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import url("https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap");
+@import "ngx-toastr/toastr";
+
+:root {
+  --primary-color: #004aad;
+  --secondary-color:white;
+  --third-color: #212529;
+  --fourth-color: whitesmoke;
+  --navbar-selected-color: #71b7ff;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --proteina-color: #6f42c1;
+  --gordura-color: #ffc107;
+  --hidratos-color: #fd7e14;
+  --disabled-color:#004aad4a;
+  --mat-stepper-container-color:#212529;
+  --mat-stepper-header-selected-state-label-text-color:white;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+}
+
+body {
+  background-color: var(--third-color);
+  font-family: "League Spartan" !important;
+  color: white;
+  font-size: 1.2rem !important;
+}
+
+input[type="date"],
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input:focus:not([type="color"]),
+select {
+  background-color: var(--third-color) !important;
+  color: white !important;
+  border: 1px solid var(--primary-color) !important;
+  height: 60px;
+  font-size: 1.2rem !important;
+}
+
+input::placeholder {
+  color: var(--primary-color) !important;
+}
+
+.btn-primary-theme {
+  background-color: var(--primary-color);
+  border: var(--primary-color);
+  width: 350px;
+  padding: 10px;
+  border-radius: 32px;
+  font-size: 1.2rem;
+}
+
+.btn-secondary-theme {
+  background-color: var(--secondary-color);
+  border: 1px solid var(--primary-color) !important;
+  color: var(--primary-color);
+  width: 350px;
+  padding: 10px;
+  border-radius: 32px;
+  font-size: 1.2rem;
+}
+
+.registerProviderBtn{
+  background-color: var(--third-color);
+  border: 1px solid var(--fourth-color);
+  color: var(--secondary-color);
+  padding: 10px;
+  border-radius: 32px;
+  font-size: 1.2rem;
+  text-align: center;
+  width: 100%;
+}
+
+.registerProviderBtn:hover{
+  border: 1px solid var(--secondary-color);
+}
+
+.btn-secondary-theme:hover {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+a {
+  color: var(--secondary-color);
+}
+
+.mediumPageLogo {
+  width: 250px;
+}
+
+.bg-primary-color {
+  background-color: var(--primary-color);
+}
+
+.text-secondary {
+  color: var(--third-color) !important;
+}
+
+.btn-action {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+html,
+body {
+  height: 100%;
+}
+
+.mat-dialog-container {
+  font-family: "League Spartan" !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.square {
+  border-radius: 12px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.rectangle {
+  border-radius: 12px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: var(--fourth-color);
+  color: var(--primary-color);
+}
+.square-primary-color {
+  background-color: var(--primary-color);
+}
+
+.square-secondary-color {
+  background-color: var(--secondary-color);
+}
+
+.raised {
+  border: 1px solid var(--success-color) !important;
+  color: var(--success-color) !important;
+}
+
+.decreased {
+  border: 1px solid var(--error-color) !important;
+  color: var(--error-color) !important;
+}
+
+.neutral{
+  border: 1px solid var(--bs-info) !important;
+  color: var(--bs-info) !important;
+}
+
+.volumeContainer{
+  border-radius:4px;
+  text-align: center;
+  padding: 10px;
+  width: 150px;
+}
+
+.workoutCircleColor{
+  width: 24px;
+  height: 24px;
+  border-radius:50%;
+  margin-right: 10px;
+}
+
+.userLogo{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}

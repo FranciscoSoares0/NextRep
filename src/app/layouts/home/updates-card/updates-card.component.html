@@ -1,0 +1,49 @@
+<div class="square square-primary-color d-flex flex-column p-5">
+  <div class="text-center mb-3">
+    <fa-icon size="2x" [icon]="faScaleUnbalancedFlip"></fa-icon>
+  </div>
+  <div class="d-flex justify-content-between">
+    <div class="d-flex flex-column">
+      <small
+        >Weight (Initial) <strong>{{ pesoInicial }}kg</strong></small
+      >
+      @if(pesoAtual != undefined){
+      <small
+        >Weight (Current): <strong>{{ pesoAtual }}kg</strong></small
+      >
+      }
+      <small
+        >Goal: <strong>{{ objetivo }}kg</strong></small
+      >
+    </div>
+    <div>
+      @if(pesoAtual != undefined){
+        <div
+          class="d-flex justify-content-center percentageContainer p-2"
+          [ngClass]="{
+              raised: percentagemPeso > 1,
+              decreased: percentagemPeso > 0 && percentagemPeso < 1,
+              neutral: percentagemPeso === 1,
+            }"
+        >
+          <small *ngIf="percentagemPeso > 1">+</small>
+          <small *ngIf="percentagemPeso > 0 && percentagemPeso < 1">-</small>
+          <small *ngIf="percentagemPeso === 1">---</small>
+          <small *ngIf="percentagemPeso !== 1">{{ percentagemPeso }}%</small>
+        </div>
+        }
+    </div>
+  </div>
+  <hr>
+  <small>Last 7 days</small>
+  <div class="text-center mt-3">  
+    <canvas
+      *ngIf="labels.length > 0"
+      baseChart
+      [data]="lineChartData"
+      [options]="lineChartOptions"
+      [type]="lineChartType"
+    >
+    </canvas>
+  </div>
+</div>

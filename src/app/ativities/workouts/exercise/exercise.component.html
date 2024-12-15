@@ -1,0 +1,79 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-3">
+    <div class="row">
+        <fa-icon
+        [routerLink]="['/calendar/workout', workoutID]"
+      class="cursor-pointer mb-3"
+      [icon]="faCircleChevronLeft"
+      style="font-size: 40px;"
+    ></fa-icon>
+        <h2>{{exercise.nome}}</h2>
+    </div>
+    <hr>
+    <div class="row">
+        <h3>Current</h3>
+        <div class="table-responsive">
+           <table class="table table-dark table-striped mt-3 text-center">
+            <thead>
+              <tr>
+                <th scope="col" class="d-none d-sm-table-cell">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Sets</th>
+                <th scope="col">Reps</th>
+                <th scope="col">Current Weight (kg)</th>
+                <th scope="col">Total Volume</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row" class="d-none d-sm-table-cell">{{ 1 }}</th>
+                <td>{{ exercise.created.toDate() | date : "dd/MM/yyyy" }}</td>
+                <td>{{ exercise.series }}</td>
+                <td>{{ exercise.repeticoes }}</td>
+                <td>{{ exercise.pesoAtual }}</td>
+                <td><div class="volumeContainer w-100" [ngClass]="{
+                    raised: exerciseUpdates.length > 0 && calcularVolumeExercicio(exercise.series,exercise.repeticoes,exercise.pesoAtual) > calcularVolumeExercicio(exerciseUpdates[0].series,exerciseUpdates[0].repeticoes,exerciseUpdates[0].peso),
+                    decreased: exerciseUpdates.length > 0 && calcularVolumeExercicio(exercise.series,exercise.repeticoes,exercise.pesoAtual) < calcularVolumeExercicio(exerciseUpdates[0].series,exerciseUpdates[0].repeticoes,exerciseUpdates[0].peso),
+                  }"><small>{{ calcularVolumeExercicio(exercise.series,exercise.repeticoes,exercise.pesoAtual) }}</small></div></td>
+              </tr>
+            </tbody>
+          </table> 
+        </div>
+        
+    </div>
+    <hr>
+    <div class="row">
+        <h3>Past updates</h3>
+        <div class="table-responsive">
+             <table class="table table-dark table-striped mt-3 text-center">
+            <thead *ngIf="exerciseUpdates && exerciseUpdates.length > 0">
+              <tr>
+                <th scope="col" class="d-none d-sm-table-cell">#</th>
+                <th scope="col">Date</th>
+                <th scope="col">Sets</th>
+                <th scope="col">Reps</th>
+                <th scope="col">Current Weight (kg)</th>
+                <th scope="col">Total Volume</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(exerciseUpdate of exerciseUpdates;track exerciseUpdate.id; let i = $index){
+              <tr>
+                <td scope="row" class="d-none d-sm-table-cell">{{ i + 2 }}</td>
+                <td>{{ exerciseUpdate.created.toDate() | date : "dd/MM/yyyy" }}</td>
+                <td>{{ exerciseUpdate.series }}</td>
+                <td>{{ exerciseUpdate.repeticoes }}</td>
+                <td>{{ exerciseUpdate.peso}}</td>
+                <td><div class="volumeContainer w-100"><small>{{ calcularVolumeExercicio(exerciseUpdate.series,exerciseUpdate.repeticoes,exerciseUpdate.peso) }}</small></div></td>
+              </tr>
+              } @empty{
+              <tr>
+                <td colspan="3"><h3>Updates not found</h3></td>
+              </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+       
+    </div>
+</div>

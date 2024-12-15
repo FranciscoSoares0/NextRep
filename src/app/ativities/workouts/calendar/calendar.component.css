@@ -1,0 +1,49 @@
+.circleColor{
+    border-radius:50%;
+    height: 30px;
+    width: 30px;
+}
+
+/* Make draggable items look like cards */
+.draggable {
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .card {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  /* Optional: Visual style for when an item is being dragged */
+  .card.dragging {
+    opacity: 0.5;
+  }
+  
+  /* FullCalendar Styles - Optional: You can customize it as you need */
+  .fc-daygrid-day {
+    position: relative;
+  }
+  
+  .fc-daygrid-day:hover {
+    background-color: #e3e3e3;
+  }
+  
+  .fc-event {
+    touch-action: none; /* Disable gestures like zoom/pan */
+    user-select: none; /* Prevent text selection */
+  }
+
+  ::ng-deep .fc-today-button{
+    margin-right:10px !important;
+  }
+
+  ::ng-deep .fc-button-group {
+    margin-left: 0px !important;
+}
+
+body {
+  touch-action: none; /* Prevents touch gestures like scrolling */
+}

@@ -1,0 +1,117 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-lg-4">
+      <div>
+        <form #workoutForm="ngForm">
+        <div class="d-flex align-items-center">
+          <div class="form-group col-6">
+            <label for="nomeTreino">{{formType}} Workout</label>
+              <input
+                type="text"
+                id="nomeTreino"
+                name="nomeTreino"
+                [(ngModel)]="nomeTreino"
+                placeholder="{{formType}} Treino"
+                class="form-control"
+                required
+              />
+    
+            <div
+              *ngIf="
+                workoutForm.controls['nomeTreino']?.invalid &&
+                workoutForm.controls['nomeTreino']?.touched
+              "
+              class="text-danger"
+            >
+              Enter the workout name
+            </div>
+          </div>
+          <div class="form-group col-4 ms-3">
+            <label for="cor">Color</label>
+            <div class="d-flex align-items-center">
+              <input
+                type="color"
+                id="cor"
+                name="cor"
+                [(ngModel)]="cor"
+                placeholder="Cor"
+                class="form-control form-control-color"
+                required
+              />
+              <button
+                type="submit"
+                class="btn btn-primary btn-action ms-3"
+                [disabled]="workoutForm.invalid"
+                (click)="onSubmit(workoutForm)"
+              >
+                @if(formType == "Add"){
+                <fa-icon [icon]="faPlus"></fa-icon>
+                } @else{
+                <fa-icon [icon]="faPen"></fa-icon>
+                }
+              </button>
+            </div>
+    
+            <div
+              *ngIf="
+                workoutForm.controls['cor']?.invalid &&
+                workoutForm.controls['cor']?.touched
+              "
+              class="text-danger"
+            >
+              Enter a color
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+      <small class="text-info">Drag the workout into the calendary to add</small>
+      <div id="external-events">
+        <table class="table table-dark table-striped mt-3">
+          <thead *ngIf="treinos && treinos.length > 0">
+            <tr>
+              <th scope="col" width="200px">Workout</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(treino of treinos;track treino.id; let i = $index){
+            <tr [attr.data-id]="treino.id">
+              <td><div [routerLink]="['/calendar/workout',treino.id]" draggable="true" [attr.data-color]="treino.cor" [attr.data-id]="treino.id" class="fc-event fc-daygrid-event cursor-pointer" [ngStyle]="{ 'background-color': treino.cor,'padding':'2px' }">{{ treino.nome }}</div></td>
+              <td>
+                <div>
+                  <fa-icon
+                    class="cursor-pointer me-3"
+                    [icon]="faPen"
+                    (click)="EditWorkout(treino.id,treino)"
+                  ></fa-icon>
+                  <fa-icon
+                    class="cursor-pointer me-3"
+                    [icon]="faTrash"
+                    (click)="DeleteWorkout(treino.id)"
+                  ></fa-icon>
+                  <fa-icon
+                    class="cursor-pointer"
+                    [icon]="faDumbbell"
+                    [routerLink]="['/calendar/workout',treino.id]"
+                  ></fa-icon>
+                </div>
+              </td>
+            </tr>
+            } @empty{
+            <tr>
+              <td colspan="3"><h3>Workouts not found</h3></td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <full-calendar
+      [options]="calendarOptions"
+      ></full-calendar>
+    </div>
+  </div>  
+</div>

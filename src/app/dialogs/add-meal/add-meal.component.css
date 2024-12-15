@@ -1,0 +1,40 @@
+.text-primary{
+    color: #212529 !important;
+}
+
+
+
+input[type="date"],input[type="text"], input[type="password"],input[type="email"], input[type="password"],input[type="number"],input:focus:not([type="file"]),select{
+    background-color: white !important;
+    color: #004AAD !important;
+    border: 1px solid #004AAD !important;
+    height: 60px !important;
+    font-size: 1.2rem !important;
+    border-radius: 12px;
+    padding: .375rem .75rem;
+    
+}
+
+input:disabled{
+    background-color: var(--disabled-color) !important;
+    color: var(--primary-color) !important;
+}
+input::placeholder{
+    color: #004AAD !important;
+}
+
+/* Parent div must have position-relative for absolute positioning */
+.position-relative {
+    position: relative;
+  }
+  
+  /* Style for the icon */
+  .input-icon {
+    position: absolute;
+    top: 55%;
+    right: 15px; /* Distance from the right edge of the input */
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    pointer-events: auto; /* Allows clicking on the icon */
+  }
+  

@@ -1,0 +1,96 @@
+<div class="rectangle d-flex flex-column p-5">
+  <div class="text-center mb-3">
+    <fa-icon size="2x" [icon]="faDumbbell"></fa-icon>
+  </div>
+  @if(exercises.length > 0){
+  <div class="d-flex justify-content-between">
+    <div class="d-flex">
+      <small>{{ todayWorkout.nome }}</small>
+      <div
+        class="workoutCircleColor ms-3"
+        [ngStyle]="{ 'background-color': todayWorkout.cor }"
+      ></div>
+    </div>
+  </div>
+  <hr>
+
+  <div class="row">
+    <div class="col-sm-8">
+      <small>WEIGHT TRAINING</small>
+    </div>
+    <div class="col-sm-4 text-center mt-3">
+      <div class="d-flex flex-column w-100">
+        <small>TOTAL VOLUME</small>
+        <div class="volumeContainer neutral p-2 w-100">{{ totalVolume }}</div>
+      </div>
+      
+    </div>
+  </div>
+  
+
+  <div class="table-responsive mb-5">
+    <table class="table table-striped mt-3">
+      <thead>
+        <th class="p-2 d-none d-sm-table-cell">#</th>
+        <th class="p-2">Exercise</th>
+        <th class="p-2">Sets</th>
+        <th class="p-2">Reps</th>
+        <th class="p-2">Current Weight (kg)</th>
+      </thead>
+      <tbody>
+        @for(exercise of exercises;track exercise.id;let index = $index){
+        <tr>
+          <td class="d-none d-sm-table-cell">{{ index + 1 }}</td>
+          <td>{{ exercise.nome }}</td>
+          <td>{{ exercise.series }}</td>
+          <td>{{ exercise.repeticoes }}</td>
+          <td>{{ exercise.pesoAtual }}</td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+  <div class="d-flex">
+    <small>CARDIOVASCULAR TRAINING</small>
+  </div>
+  <div class="table-responsive mb-3">
+    <table class="table table-striped mt-3">
+      <thead *ngIf="cardioExercises && cardioExercises.length > 0">
+        <th class="p-2 d-none d-sm-table-cell">#</th>
+        <th class="p-2">Exercise</th>
+        <th class="p-2">Minutes (min)</th>
+        <th class="p-2">Calories (kcal)</th>
+      </thead>
+      <tbody>
+        @for(exercise of cardioExercises;track exercise.id;let index = $index){
+        <tr>
+          <td class="d-none d-sm-table-cell">{{ index + 1 }}</td>
+          <td>{{ exercise.nome }}</td>
+          <td>{{ exercise.minutos }}</td>
+          <td>{{ exercise.calorias }}</td>
+        </tr>
+        }
+        @empty{
+          <tr><td colspan="4">No cardiovascular exercises found</td></tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  } @else{
+  <h2 class="text-secondary">
+    You don't have exercises for today
+  </h2>
+  <div class="d-flex justify-content-center">
+    <button
+      routerLink="/calendar"
+      class="btn btn-primary btn-primary-theme mt-3"
+      type="button"
+    >
+      Clica here to add
+    </button>
+  </div>
+  }
+</div>

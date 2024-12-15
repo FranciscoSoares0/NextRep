@@ -1,0 +1,26 @@
+<app-nav-bar></app-nav-bar>
+<div class="container mt-3">
+  <div class="row d-flex align-items-center mt-3">
+    <fa-icon
+      routerLink="/calendar"
+      class="cursor-pointer mb-3"
+      [icon]="faCircleChevronLeft"
+      style="font-size: 40px"
+    ></fa-icon>
+    <div class="d-flex">
+      <div class="d-flex">
+        <h2 class="m-0">{{ workoutName }}</h2>
+        <div
+          class="workoutCircleColor ms-3"
+          [ngStyle]="{ 'background-color': workoutColor }"
+        ></div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <app-weigth-training [userID]="userID" [workoutID]="workoutID" [exercises]="exercises" [totalVolume]="totalVolume"></app-weigth-training>
+  <hr>
+  <app-cardio [userID]="userID" [workoutID]="workoutID" [cardioExercises]="cardioExercises"></app-cardio>
+
+  
+</div>

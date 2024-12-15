@@ -1,0 +1,19 @@
+.navBarLogo{
+    width: 100px;
+}
+
+.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+    color: var(--navbar-selected-color) !important;
+}
+
+.nav-link{
+    color: white !important;
+}
+
+.nav-item{
+    margin-right: 50px;
+}
+
+.pointer{
+    cursor: pointer;
+}

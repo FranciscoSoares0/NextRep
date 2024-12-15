@@ -1,0 +1,38 @@
+<div class="row mt-3 table-responsive">
+    <h3>{{categoria}}</h3>
+    <table class="table table-dark table-striped mt-3 text-center">
+        <thead *ngIf="refeicoes && refeicoes.length > 0">
+          <tr>
+            <th scope="col" class="d-none d-sm-table-cell">#</th>
+            <th scope="col">Actions</th>
+            <th scope="col">Food</th>
+            <th scope="col">Calories (kcal)</th>
+            <th scope="col">Proteins (g)</th>
+            <th scope="col">Fats (g)</th>
+            <th scope="col">Carbohydrates (g)</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(refeicao of refeicoes;track refeicao.id; let i = $index){
+            <tr>
+              <th scope="row" class="d-none d-sm-table-cell">{{ i + 1 }}</th>
+              <td>
+                <div class="d-flex align-items-center justify-content-center">
+                  <fa-icon (click)="EditUpdate(refeicao.id,refeicao)" class="me-3 cursor-pointer" [icon]="faPen"></fa-icon>
+                  <fa-icon (click)="DeleteUpdate(refeicao.id)" class="cursor-pointer" [icon]="faTrash"></fa-icon>
+                </div>
+              </td>
+              <td>{{ refeicao.product_name }}</td>
+              <td>{{ refeicao.calorias }}</td>
+              <td>{{ refeicao.proteinas }}</td>
+              <td>{{ refeicao.gorduras }}</td>
+              <td>{{ refeicao.hidratos }}</td>
+            </tr>
+          } @empty{
+            <tr>
+              <td colspan="3"><h3>Foods not found</h3></td>
+            </tr>
+          }
+        </tbody>
+      </table>
+  </div>

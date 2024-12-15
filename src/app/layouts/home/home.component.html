@@ -1,0 +1,39 @@
+@if(loading){
+<app-loading></app-loading>
+} @else{
+<app-nav-bar></app-nav-bar>
+
+<div class="container mt-3">
+  <div class="row d-flex justify-content-between">
+    <div class="col-6"><h1 class="m-0">Today</h1></div>
+    <div class="col-6 d-flex justify-content-end">
+      <div class="d-flex align-items-center me-3"><h1 class="m-0">{{consecutiveDays}}</h1></div>
+      <div class="d-flex flex-column">
+        <small>CONSECUTIVE</small>
+        <small>DAY<small *ngIf="consecutiveDays != 1">S</small></small>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-3">
+    <!-- First Square -->
+    <div class="col-lg-6 mb-3 col-12">
+        <app-updates-card
+          [userID]="userID"
+          [pesoInicial]="pesoInicial"
+          [objetivo]="objetivo"
+        ></app-updates-card>
+    </div>
+    <!-- Second Square -->
+    <div class="col-lg-6 mb-3 col-12">
+        <app-meals-card [userID]="userID" [calorias]="calorias" [proteinas]="proteinas" [gorduras]="gorduras" [hidratos]="hidratos" [agua]="agua" [caloriasCardio]="caloriasCardio"></app-meals-card>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- First Rectangle -->
+    <div class="col-12">
+      <app-workouts-card (caloriasGastasEvent)="onWorkoutDataReceived($event)" [userID]="userID"></app-workouts-card>
+    </div>
+  </div>
+</div>
+}

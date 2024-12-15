@@ -1,0 +1,73 @@
+<div class="row">
+    <h3>Weight Training</h3>
+</div>
+    <div class="row justify-content-between mb-3">
+      <div class="col-md-4">
+        <button
+      (click)="openDialog()"
+      class="btn btn-primary btn-primary-theme mt-3 w-100"
+      type="button"
+    >
+      Add Exercise
+    </button>
+      </div>
+      
+      <div *ngIf="exercises.length > 0" class="text-center col-md-4 mt-5 mt-md-0 d-flex flex-column">
+        <small>TOTAL VOLUME</small>
+        <div class="volumeContainer neutral w-100">{{ totalVolume }}</div>
+      </div>
+    </div>
+
+  <div class="row table-responsive">
+    <table class="table table-dark table-striped text-center">
+      <thead *ngIf="exercises && exercises.length > 0">
+        <tr>
+          <th scope="col" width="50px" class="d-none d-sm-table-cell">#</th>
+          <th scope="col" width="150px">Actions</th>
+          <th scope="col" width="150px">Exercise</th>
+          <th scope="col" width="150px">Sets</th>
+          <th scope="col">Reps</th>
+          <th scope="col">Current weight (kg)</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for(exercise of exercises;track exercise.id; let i = $index){
+        <tr>
+          <th scope="row" class="d-none d-sm-table-cell">{{ i + 1 }}</th>
+          <td>
+            <div class="d-flex align-items-center justify-content-center">
+              <fa-icon
+                (click)="EditExercise(exercise.id, exercise)"
+                class="me-3 cursor-pointer"
+                [icon]="faPen"
+              ></fa-icon>
+              <fa-icon
+                (click)="DeleteExercise(exercise.id)"
+                class="me-3 cursor-pointer"
+                [icon]="faTrash"
+              ></fa-icon>
+              <fa-icon
+                [routerLink]="[
+                  '/calendar/workout',
+                  workoutID,
+                  'exercise',
+                  exercise.id
+                ]"
+                class="cursor-pointer"
+                [icon]="faMagnifyingGlassChart"
+              ></fa-icon>
+            </div>
+          </td>
+          <td>{{ exercise.nome }}</td>
+          <td>{{ exercise.series }}</td>
+          <td>{{ exercise.repeticoes }}</td>
+          <td>{{ exercise.pesoAtual }}</td>
+        </tr>
+        } @empty{
+        <tr>
+          <td colspan="3"><h3>Exercises not found</h3></td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>

@@ -1,0 +1,106 @@
+
+    <div class="h-100 square bg-white d-flex flex-column p-5 text-secondary">
+      <div class="text-center mb-3">
+        <fa-icon size="2x" [icon]="faFireFlameCurved"></fa-icon>
+      </div>
+      <div class="container">
+        <div class="row col-12 d-flex">
+          <div class="col-8">
+            <div class="mb-3">
+              <small class="fs-6">REMAINING = META - FOOD + EXERCISE </small>
+            </div>
+            <circle-progress
+            [percent]="percentage"
+            [radius]="70"
+            [title]="restantesCalorias >= 0 ? restantesCalorias.toString()+ ' kcal' : (usadasCalorias - calorias).toString()+ ' kcal'"
+            [subtitle]="restantesCalorias >= 0 ? 'REMAINING' : 'ABOVE'"
+            [outerStrokeColor]="restantesCalorias >= 0 ? 'var(--primary-color)':'var(--error-color)'"
+            [animation]="true"
+            ></circle-progress>
+          </div>
+          <div class="col-4 d-flex flex-column justify-content-center">
+            <div class="d-flex align-items-center">
+              <div class="d-flex flex-column">
+                <fa-icon [ngStyle]="{'color': 'var(--third-color)'}" [icon]="faFlag"></fa-icon>
+              </div>
+              <div class="d-flex flex-column ms-3">
+                <small>Meta</small>
+                <b>{{calorias}} Kcal</b>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="d-flex flex-column">
+                <fa-icon [ngStyle]="{'color': 'var(--primary-color)'}" [icon]="faUtensils"></fa-icon>
+              </div>
+              <div class="d-flex flex-column ms-3">
+                <small>Food</small>
+                <b>{{usadasCalorias}} Kcal</b>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="d-flex flex-column">
+                <fa-icon [ngStyle]="{'color': 'var(--primary-color)'}" [icon]="faPersonRunning"></fa-icon>
+              </div>
+              <div class="d-flex flex-column ms-3">
+                <small>Exercise</small>
+                <b>{{caloriasCardio}} Kcal</b>
+              </div>
+            </div>
+            <div class="d-flex align-items-center">
+              <div class="d-flex flex-column">
+                <fa-icon [ngStyle]="{'color': 'var(--primary-color)'}" [icon]="faGlassWater"></fa-icon>
+              </div>
+              <div class="d-flex flex-column ms-3">
+                <small>Water</small>
+                <b>{{agua}} L</b>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="container">
+            <div class="row">
+              <div class="col-4 d-flex align-items-center flex-column">
+                <small>PROTEINS</small>
+                <circle-progress
+                  [percent]="percentageProteinas"
+                  [radius]="45"
+                  [title]="restantesProteinas >= 0 ? restantesProteinas.toString()+ ' g' : (usadasProteinas - proteinas).toString()+ ' g'"
+                  [subtitle]="restantesProteinas >= 0 ? 'REMAINING' : 'ABOVE'"
+                  [outerStrokeColor]="restantesProteinas >= 0 ? 'var(--proteina-color)':'var(--error-color)'"
+                  [animation]="true"
+                  [titleFontSize]="'24px'"
+                  [subtitleFontSize]="'0.8rem'"
+                  ></circle-progress>
+              </div>
+              <div class="col-4 d-flex align-items-center flex-column">
+                <small>FATS</small>
+                <circle-progress
+                  [percent]="percentageGorduras"
+                  [radius]="45"
+                  [title]="restantesGorduras >= 0 ? restantesGorduras.toString() + ' g' : (usadasGorduras - gorduras).toString()+ ' g'"
+                  [subtitle]="restantesGorduras >= 0 ? 'REMAINING' : 'ABOVE'"
+                  [outerStrokeColor]="restantesGorduras >= 0 ? 'var(--gordura-color)':'var(--error-color)'"
+                  [animation]="true"
+                  [titleFontSize]="'24px'"
+                  [subtitleFontSize]="'0.8rem'"
+                  ></circle-progress>
+              </div>
+              <div class="col-4 d-flex align-items-center flex-column">
+                <small>CARBOHYDRATES</small>
+                <circle-progress
+                  [percent]="percentageHidratos"
+                  [radius]="45"
+                  [title]="restantesHidratos >= 0 ? restantesHidratos.toString()+ ' g' : (usadasHidratos - hidratos).toString()+ ' g'"
+                  [subtitle]="restantesHidratos >= 0 ? 'REMAINING' : 'ABOVE'"
+                  [outerStrokeColor]="restantesHidratos >= 0 ? 'var(--hidratos-color)':'var(--error-color)'"
+                  [animation]="true"
+                  [titleFontSize]="'24px'"
+                  [subtitleFontSize]="'0.8rem'"
+                  ></circle-progress>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>

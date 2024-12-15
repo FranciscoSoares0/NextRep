@@ -1,0 +1,146 @@
+<app-nav-bar></app-nav-bar>
+@if(!loading){
+<div class="container mt-3">
+  <div class="row">
+    <div class="d-flex">
+      <h2>Macronutrients ratio</h2>
+      <fa-icon
+        class="ms-3 cursor-pointer"
+        [icon]="isCollapsed ? faChevronDown : faChevronUp"
+        data-bs-toggle="collapse"
+        href="#collapseMacronutrients"
+        (click)="toggleCollapse()"
+      ></fa-icon>
+    </div>
+  </div>
+  <form
+    [formGroup]="macroNutrientesForm"
+    (ngSubmit)="onSubmit()"
+    [ngClass]="{ collapse: isCollapsed, show: !isCollapsed }"
+    id="collapseMacronutrients"
+  >
+    <div class="mb-3 row">
+      <div class="form-group col-sm-4">
+        <label for="proteinas">Proteins %</label>
+        <input
+          step="1"
+          min="0"
+          pattern="^[0-9]*$"
+          (keypress)="allowOnlyInteger($event)"
+          type="number"
+          class="form-control"
+          id="proteinas"
+          placeholder="Proteins %"
+          formControlName="proteinas"
+          [ngClass]="{
+            'is-invalid': fc['proteinas'].touched && fc['proteinas'].invalid
+          }"
+          required
+        />
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="gorduras">Fats %</label>
+        <input
+          step="1"
+          min="0"
+          pattern="^[0-9]*$"
+          (keypress)="allowOnlyInteger($event)"
+          type="number"
+          class="form-control"
+          id="gorduras"
+          placeholder="Fats %"
+          formControlName="gorduras"
+          [ngClass]="{
+            'is-invalid': fc['gorduras'].touched && fc['gorduras'].invalid
+          }"
+          required
+        />
+      </div>
+      <div class="form-group col-sm-4">
+        <label for="gorduras">Carbohydrates %</label>
+        <div class="d-flex align-items-center">
+            <input
+              step="1"
+              min="0"
+              pattern="^[0-9]*$"
+              (keypress)="allowOnlyInteger($event)"
+              type="number"
+              class="form-control"
+              id="hidratos"
+              placeholder="Carbohydrates %"
+              formControlName="hidratos"
+              [ngClass]="{
+                'is-invalid': fc['hidratos'].touched && fc['hidratos'].invalid
+              }"
+              required
+            />
+            <button
+          type="submit"
+          class="btn btn-primary btn-action ms-3"
+          [disabled]="
+            macroNutrientesForm.invalid || !checkMacroNutrientPercentage()
+          "
+        >
+          <fa-icon [icon]="faFloppyDisk"></fa-icon>
+        </button>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!checkMacroNutrientPercentage()" class="text-danger">
+      The sum of the percentages must be 100%
+    </div>
+  </form>
+
+  <div class="row mt-3">
+    <div class="d-flex">
+      <h2>Water Ingestion</h2>
+      <fa-icon
+        class="ms-3 cursor-pointer"
+        [icon]="isWaterCollapsed ? faChevronDown : faChevronUp"
+        data-bs-toggle="collapse"
+        href="#collapseAgua"
+        (click)="toggleWaterCollapse()"
+      ></fa-icon>
+    </div>
+  </div>
+  <div class="row">
+    <form
+      [formGroup]="aguaForm"
+      (ngSubmit)="onSubmitAgua()"
+      [ngClass]="{ collapse: isWaterCollapsed, show: !isWaterCollapsed }"
+      id="collapseAgua"
+    >
+        <div class="form-group col-sm-4">
+          <label for="agua">Water (L)</label>
+          <div class="d-flex align-items-center">
+              <input
+                min="0"
+                type="number"
+                class="form-control"
+                id="agua"
+                placeholder="Water (L)"
+                formControlName="litrosAgua"
+                [ngClass]="{
+                  'is-invalid':
+                    fcAgua['litrosAgua'].touched && fcAgua['litrosAgua'].invalid
+                }"
+                required
+              />
+              <button
+            type="submit"
+            class="btn btn-primary btn-action ms-3"
+            [disabled]="aguaForm.invalid"
+          >
+            <fa-icon [icon]="faFloppyDisk"></fa-icon>
+          </button>
+          </div>
+      </div>
+    </form>
+  </div>
+  <div class="row mt-3">
+    <h2>Meals diary for</h2>
+    <app-daily-meals [userData]="userData"></app-daily-meals>
+  </div>
+</div>
+
+}
