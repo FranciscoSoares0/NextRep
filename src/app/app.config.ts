@@ -10,7 +10,7 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { provideToastr } from 'ngx-toastr';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { firebaseConfig } from '../environments/environment';
+import { config } from '../environments/environment';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideHttpClient } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
@@ -19,7 +19,7 @@ import { importProvidersFrom } from '@angular/core';
 export const appConfig: ApplicationConfig = {
   providers: [provideZoneChangeDetection({ eventCoalescing: true }), provideRouter(routes), provideClientHydration(),
     provideAuth(()=> getAuth()),
-    provideFirebaseApp(() => initializeApp(firebaseConfig.firebase)),
+    provideFirebaseApp(() => initializeApp(config.firebase)),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
     provideToastr(),

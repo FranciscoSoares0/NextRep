@@ -75,14 +75,14 @@
               *ngIf="fc['dataNascimento'].touched && fc['dataNascimento'].invalid"
             >
               <div *ngIf="fc['dataNascimento'].errors?.['required']">Enter your birth date</div>
-              <div *ngIf="fc['dataNascimento']?.errors?.['invalidDate']">
-                {{ fc['dataNascimento']?.errors?.['invalidDate'] }}
+              <div *ngIf="fc['dataNascimento'].errors?.['invalidDate']">
+                {{ fc['dataNascimento'].errors?.['invalidDate'] }}
               </div>
-              <div *ngIf="fc['dataNascimento']?.errors?.['futureDate']">
-                {{ fc['dataNascimento']?.errors?.['futureDate'] }}
+              <div *ngIf="fc['dataNascimento'].errors?.['futureDate']">
+                {{ fc['dataNascimento'].errors?.['futureDate'] }}
               </div>
-              <div *ngIf="fc['dataNascimento']?.errors?.['maxAgeExceeded']">
-                {{ fc['dataNascimento']?.errors?.['maxAgeExceeded'] }}
+              <div *ngIf="fc['dataNascimento'].errors?.['maxAgeExceeded']">
+                {{ fc['dataNascimento'].errors?.['maxAgeExceeded'] }}
               </div>
             </div>
           </div>
