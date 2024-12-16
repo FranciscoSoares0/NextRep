@@ -30,8 +30,6 @@ export class AddCardioComponent {
     @Inject(MAT_DIALOG_DATA) public data: {exercicio : ICardio} | null,
     private fb: FormBuilder
   ) {
-
-    console.log(this.data?.exercicio);
     if(data?.exercicio){
       this.exercicio = data.exercicio;
       this.formType = "Edit";

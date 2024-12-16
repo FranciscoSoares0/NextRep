@@ -190,9 +190,7 @@ export class AddMealComponent implements OnDestroy {
             carbohydrates_100g: this.selectedFood.nutriments.carbohydrates_100g,
           },
         };
-
-        console.log(macros_100);
-
+        
         dataToSend = {
           ...this.mealForm.getRawValue(),
           ...macros_100,

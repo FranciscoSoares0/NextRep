@@ -19,7 +19,6 @@ import {
 import { BaseChartDirective } from 'ng2-charts';
 import { lineChartOptions } from '../../../chartOptions/chartOptions'; // Import the chart options file
 import { CommonModule,DatePipe } from '@angular/common';
-import { IUpdate } from '../../../interfaces/update';
 import { OnInit,OnDestroy,SimpleChanges,OnChanges, } from '@angular/core';
 import { Subject,takeUntil } from 'rxjs';
 import { AuthService } from '../../../services/auth';
@@ -115,8 +114,6 @@ export class ReportComponent implements OnInit,OnDestroy,OnChanges{
   }
 
   onChangeReport(){
-    console.log(this.period)
-    console.log(this.report)
     this.labels = [];
     this.data = [];
     this.updateService.getUserUpdatesLastXDays(this.userID,this.period).pipe(takeUntil(this.$unsubscribe)).subscribe((updates)=>{

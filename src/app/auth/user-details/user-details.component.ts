@@ -47,11 +47,9 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.authService.user$.pipe(takeUntil(this.$unsubscribe)).subscribe((user)=>{
       if(user){
-        console.log(user)
         this.userUID = user.uid;
         //this.imgSrc = user.photoURL;
         this.userService.getUserById(this.userUID).pipe(takeUntil(this.$unsubscribe)).subscribe((userData)=>{
-          console.log(userData)
           if(userData){
             this.pesoInicial = userData.peso;
           }
@@ -81,10 +79,9 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
 
   onSubmit() {
     const rawForm = this.detailsForm.getRawValue();
-    console.log(rawForm);
-    let caloriasTotais = this.calcularCalorias(rawForm.genero,rawForm.idade,this.pesoInicial,rawForm.altura,rawForm.atividade,rawForm.objetivo);
+    let caloriasTotais = this.calcularCalorias(rawForm.genero,rawForm.dataNascimento,this.pesoInicial,rawForm.altura,rawForm.atividade,rawForm.objetivo);
     let userData = {
-      idade: rawForm.idade,
+      dataNascimento: new Date(rawForm.dataNascimento),
       objetivo: rawForm.objetivo,
       altura:rawForm.altura,
       sexo: rawForm.sexo,
@@ -92,6 +89,7 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
       calorias: caloriasTotais,
     }
 
+    console.log(userData)
     /*if(rawForm.image != null){
       this.userService.uploadImage(this.selectedFile!,userData,this.userUID);
     }*/
@@ -132,12 +130,12 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
     }
   }
 
-  calcularCalorias(genero:string,idade:number,peso:number,altura:number,atividade:string,objetivo:number){
+  calcularCalorias(genero:string,dataNascimento:string,peso:number,altura:number,atividade:string,objetivo:number){
     let bmr = 0, tdee = 0, calories = 0;
     if(genero == "Masculine")
-      bmr = (10*peso) + (6.25 * altura) - (5*idade) + 5;
+      bmr = (10*peso) + (6.25 * altura) - (5*this.calcularIdade(dataNascimento)) + 5;
     else
-      bmr = (10*peso) + (6.25 * altura) - (5*idade) - 161;
+      bmr = (10*peso) + (6.25 * altura) - (5*this.calcularIdade(dataNascimento)) - 161;
 
     switch(atividade){
       case "Sedentary (little or no exercise)":
@@ -166,5 +164,24 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
     
     return Math.round(calories);
 
+  }
+
+  calcularIdade(birthdate: string): number {
+    if (!birthdate) {
+      return 0; // Return 0 if no date provided
+    }
+  
+    const today = new Date(); // Current date
+    const birthDate = new Date(birthdate); // Input birthdate
+  
+    let age = today.getFullYear() - birthDate.getFullYear(); // Initial age difference
+    const monthDifference = today.getMonth() - birthDate.getMonth();
+  
+    // Adjust age if the birthdate hasn't occurred yet this year
+    if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+  
+    return age;
   }
 }

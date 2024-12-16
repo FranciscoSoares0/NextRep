@@ -46,8 +46,6 @@ export class LoginComponent {
         this.router.navigateByUrl('/home');
       },
       error: (err) => {
-        console.log('error');
-        console.log(err.code);
         let errorMessage = '';
 
         switch (err.code) {

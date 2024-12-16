@@ -19,6 +19,7 @@
             "polyfills": [
               "zone.js"
             ],
+            "serviceWorker": false,
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/assets"
@@ -30,18 +31,15 @@
             ],
             "scripts": [],
             "server": "src/main.server.ts",
-            "prerender": true,
-            "ssr": {
-              "entry": "server.ts"
-            }
+            "prerender": true
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "2MB",
+                  "maximumError": "2.5MB"
                 },
                 {
                   "type": "anyComponentStyle",

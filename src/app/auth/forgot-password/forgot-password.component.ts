@@ -20,7 +20,6 @@ export class ForgotPasswordComponent  {
 
 
   onSubmit(emailForm:any) {
-    console.log(this.email);
     this.authService.resetPassword(this.email).subscribe({
       next: () => {
         emailForm.resetForm();

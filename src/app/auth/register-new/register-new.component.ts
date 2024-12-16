@@ -106,7 +106,6 @@ export class RegisterNewComponent {
         this.router.navigateByUrl('/');
       },
       error: (err) => {
-        console.log(err.code);
         let errorMessage = '';
 
         switch (err.code) {
@@ -268,16 +267,11 @@ export class RegisterNewComponent {
   registerWithGoogle() {
     const userData = this.getUserData();
     const updateData = this.getUserUpdate();
-    console.log("userDAta")
-    console.log(userData)
-
     this.authService.registerWithGoogle(userData,updateData).subscribe({
       complete: () => {
         this.router.navigateByUrl('/');
       },
       error: (err) => {
-        console.log('error');
-        console.log(err.code);
         this.toastr.error(err.code);
       },
     });
@@ -292,7 +286,6 @@ export class RegisterNewComponent {
         this.router.navigateByUrl('/');
       },
       error: (err) => {
-        console.log(err);
         this.toastr.error(err.code);
       }
     });

@@ -38,7 +38,6 @@ export class NavBarComponent implements OnInit,OnDestroy {
   ngOnInit(): void {
     this.authService.user$.pipe(takeUntil(this.$unsubscribe)).subscribe((user) => {
       if(user){
-        console.log(user);
         if(user.photoURL)
           this.imagePath = user.photoURL;
         this.userService.getUserById(user.uid).pipe(takeUntil(this.$unsubscribe)).subscribe((userData)=>{
