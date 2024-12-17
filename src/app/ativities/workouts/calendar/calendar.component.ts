@@ -122,7 +122,12 @@ export class CalendarComponent implements OnInit, OnDestroy {
     document.addEventListener(
       'touchmove',
       (e) => {
-        e.preventDefault(); // Prevent scrolling while dragging
+        const target = e.target as HTMLElement;
+  
+        // Only prevent scrolling if dragging a workout (with `draggable="true"`)
+        if (target && target.closest('.fc-event')) {
+          e.preventDefault();
+        }
       },
       { passive: false }
     );
@@ -173,7 +178,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
     if (this.checkIfEventExists(newEventStartDate)) {
       // If an event already exists, prevent adding the new event and show an error
-      this.toastr.error('Já existe um treino nesse dia');
+      this.toastr.error('There is already a scheduled workout for that day');
       info.revert(); // Revert the event drop (i.e., return the event to its original position)
     } else {
       // If no event exists, proceed with adding the new event
@@ -197,7 +202,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
 
     if (this.checkIfEventExists(newEventStartDate)) {
       // If an event already exists, prevent adding the new event and show an error
-      this.toastr.error('Já existe um treino nesse dia');
+      this.toastr.error('There is already a scheduled workout for that day');
       info.revert(); // Revert the event drop (i.e., return the event to its original position)
     } else {
       if (info) {
@@ -225,7 +230,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     if (start.toISOString().split('T')[0] !== end.toISOString().split('T')[0]) {
       // If the event is spanning multiple days, revert the resize (cancel the resize)
       info.revert(); // This will undo the resize
-      this.toastr.error('Eventos não podem ocorrer em múltiplos dias');
+      this.toastr.error('Workouts cannot occur in multiple days');
     }
   }
 

@@ -91,13 +91,17 @@ export class UpdatesComponent implements OnInit,OnDestroy {
           coxa:result.coxa,
           created : Timestamp.now(),
         }
-        this.updateService.updateUpdate(this.userID,updateID,updateData).subscribe(()=>{});
+        this.updateService.updateUpdate(this.userID,updateID,updateData).subscribe(()=>{
+          this.refreshChartData();
+        });
       }
     });
   }
 
   DeleteUpdate(updateID:string){
-    this.updateService.deleteUpdate(this.userID,updateID).subscribe(()=>{});
+    this.updateService.deleteUpdate(this.userID,updateID).subscribe(()=>{
+      this.refreshChartData();
+    });
   }
 
   openDialog(): void {
@@ -119,7 +123,9 @@ export class UpdatesComponent implements OnInit,OnDestroy {
           created : Timestamp.now(),
         }
 
-        this.updateService.addUpdate(this.userID,updateData).subscribe(()=>{});
+        this.updateService.addUpdate(this.userID,updateData).subscribe(()=>{
+          this.refreshChartData();
+        });
       } else {
         console.log('O diálogo foi fechado sem dados');
       }
@@ -143,4 +149,18 @@ export class UpdatesComponent implements OnInit,OnDestroy {
     // Use DatePipe to format the date
     return this.datePipe.transform(new Date(seconds * 1000), 'yyyy-MM-dd');
   }
+
+  refreshChartData() {
+    const sortedData = [...this.atualizacoesData].sort(
+      (a, b) => a.created.seconds - b.created.seconds
+    );
+  
+    this.labelsReport = sortedData
+      .map((update) => this.convertTimestampToShortDate(update.created.seconds))
+      .filter((label): label is string => label !== null); // Filter out nulls
+  
+    this.dataReport = sortedData.map((update) => update.novoPeso);
+  }
+  
+  
 }

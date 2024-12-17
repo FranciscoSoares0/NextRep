@@ -47,3 +47,7 @@
 body {
   touch-action: none; /* Prevents touch gestures like scrolling */
 }
+.container {
+  overflow-y: auto;
+  max-height: 100vh; /* Ensure the container is scrollable */
+}

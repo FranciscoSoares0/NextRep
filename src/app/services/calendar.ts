@@ -94,7 +94,7 @@ export class CalendarService {
         this.toastr.success('Workout session edited successfully');
       })
       .catch((err) => {
-        this.toastr.error('Erro ao editar evento: ' + err.message);
+        this.toastr.error('Error editing workout session: ' + err.message);
         throw err;
       });
     return from(promise);

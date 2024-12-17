@@ -15,6 +15,7 @@ export const lineChartOptions: ChartOptions = {
           size: 16,
         },
       },
+      onClick: () => null,
     },
     tooltip: {
       titleColor: 'white',
