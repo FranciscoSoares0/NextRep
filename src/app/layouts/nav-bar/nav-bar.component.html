@@ -22,7 +22,7 @@
             <img routerLink="/userDetails" class="userLogo me-3" *ngIf="imagePath != ''" [src]="imagePath"/>
             <app-profile-logo *ngIf="imagePath == ''" routerLink="/userDetails" [nome]="nome" [apelido]="apelido" [cor]="cor"></app-profile-logo>
             <div class="d-flex flex-column align-items-center">
-              <fa-icon routerLink="/privacy-policy" [icon]="faUserShield"></fa-icon>
+              <fa-icon class="pointer" routerLink="/privacy-policy" [icon]="faUserShield"></fa-icon>
               <fa-icon (click)="logout()" class="pointer" [icon]="faArrowRightFromBracket"></fa-icon>
             </div>
             
