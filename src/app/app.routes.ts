@@ -11,6 +11,7 @@ import { WorkoutComponent } from './ativities/workouts/workout/workout.component
 import { CalendarComponent } from './ativities/workouts/calendar/calendar.component';
 import { ExerciseComponent } from './ativities/workouts/exercise/exercise.component';
 import { RegisterNewComponent } from './auth/register-new/register-new.component';
+import { PrivacyPolicyComponent } from './layouts/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' }, // Redirect root to 'home' or another default
@@ -24,5 +25,6 @@ export const routes: Routes = [
     { path: 'calendar/workout/:workoutid/exercise/:exerciseid', component: ExerciseComponent, canActivate: [AuthGuard] },
     { path: 'updates', component: UpdatesComponent, canActivate: [AuthGuard] },
     { path: 'meals', component: MealsComponent, canActivate: [AuthGuard] },
+    { path: 'privacy-policy', component: PrivacyPolicyComponent, canActivate: [AuthGuard] },
     { path: '**', component: NotFoundComponent } // Wildcard route for 404 page
 ];

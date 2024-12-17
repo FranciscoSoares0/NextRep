@@ -1,9 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faHome, faArrowRightFromBracket, faUtensils, faDumbbell, faWeightScale } from '@fortawesome/free-solid-svg-icons';
+import { faHome, faArrowRightFromBracket, faUtensils, faDumbbell, faWeightScale, faUserShield } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from '../../services/auth';
 import { OnInit } from '@angular/core';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { RouterLink, RouterModule } from '@angular/router';
 import { ProfileLogoComponent } from '../profile-logo/profile-logo.component';
 import { UserService } from '../../services/user';
 import { OnDestroy } from '@angular/core';
@@ -24,6 +24,7 @@ export class NavBarComponent implements OnInit,OnDestroy {
   faUtensils = faUtensils;
   faDumbbell  = faDumbbell;
   faWeightScale = faWeightScale;
+  faUserShield = faUserShield;
 
   authService = inject(AuthService);
   userService = inject(UserService);
