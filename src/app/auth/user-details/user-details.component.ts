@@ -13,6 +13,8 @@ import { AuthService } from '../../services/auth';
 import { UpdateService } from '../../services/updates';
 import { Subject,takeUntil } from 'rxjs';
 import { birthDateValidator } from '../../validators/birthDateValidator';
+import { DeleteAccountComponent } from '../../dialogs/delete-account/delete-account.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-details',
@@ -27,6 +29,7 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
   userService = inject(UserService);
   authService = inject(AuthService);
   updatesService = inject(UpdateService);
+  dialog = inject(MatDialog);
 
   imgSrc: any = '';
   selectedFile: File | null = null;
@@ -183,5 +186,13 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
     }
   
     return age;
+  }
+
+  openDeleteAccountDialog(): void {
+    const dialogRef = this.dialog.open(DeleteAccountComponent, {
+      width: '500px',  // Define a largura do diálogo
+      autoFocus: true,
+    });
+
   }
 }

@@ -3,7 +3,7 @@ import { Observable, from,switchMap } from 'rxjs';
 import { IUser } from '../interfaces/user';
 import {
   Firestore,
-  addDoc,
+  deleteDoc,
   collection,
   collectionData,
   getDoc,
@@ -138,4 +138,38 @@ export class UserService {
     const promise = updateProfile(this.firebaseAuth.currentUser!, { photoURL });
     return from(promise);
   }
+
+  deleteUserData(): Observable<void> {
+    const currentUser = this.firebaseAuth.currentUser;
+  
+    if (currentUser) {
+      const userId = currentUser.uid;
+      this.router.navigateByUrl('/login');
+      // Step 1: Delete the user's data from Firestore
+      const userDocRef = doc(this.firestore, `users/${userId}`);
+      const deleteUserDoc$ = from(deleteDoc(userDocRef)).pipe(
+        switchMap(() => {
+          // Step 2: Delete the user from Firebase Authentication
+          return from(currentUser.delete()).pipe(
+            switchMap(() => {
+              // Step 3: Sign the user out after deletion
+              return from(this.firebaseAuth.signOut()).pipe(
+                switchMap(() => {
+                  this.toastr.success('Your account has been deleted successfully.');
+                  return new Observable<void>((observer) => observer.complete());
+                })
+              );
+            })
+          );
+        })
+      );
+  
+      return deleteUserDoc$;
+    } else {
+      this.toastr.error('No logged-in user found.');
+      return new Observable<void>((observer) => observer.complete());
+    }
+  }
+  
+  
 }

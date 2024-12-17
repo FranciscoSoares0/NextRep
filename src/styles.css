@@ -82,6 +82,16 @@ input::placeholder {
   text-align: center;
   width: 100%;
 }
+.deleteBtn{
+  background-color: var(--third-color);
+  border: 1px solid var(--error-color);
+  color: var(--error-color);
+  padding: 10px;
+  border-radius: 32px;
+  font-size: 1.2rem;
+  text-align: center;
+  width: 100%;
+}
 
 .registerProviderBtn:hover{
   border: 1px solid var(--secondary-color);
@@ -90,6 +100,11 @@ input::placeholder {
 .btn-secondary-theme:hover {
   background-color: var(--secondary-color);
   color: var(--primary-color);
+}
+
+.deleteBtn:hover{
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
 }
 
 a {

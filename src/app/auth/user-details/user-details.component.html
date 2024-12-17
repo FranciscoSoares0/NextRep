@@ -156,9 +156,12 @@
           <hr>
           
           
-        <div class="justify-content-center d-flex">
+        <div class="justify-content-center d-flex flex-column">
             <button type="submit" [disabled] = 'detailsForm.invalid' class="btn btn-primary btn-primary-theme mt-3">
                 Save
+            </button>
+            <button (click)="openDeleteAccountDialog()" type="button" class="btn deleteBtn mt-3">
+                Delete my account
             </button>
         </div>
         

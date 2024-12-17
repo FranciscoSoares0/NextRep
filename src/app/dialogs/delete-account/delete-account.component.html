@@ -1,0 +1,22 @@
+<div class="container mt-3">
+  <div class="row">
+    <p class="text-primary">Are you sure you want to delete your account?</p>
+    <small class="text-danger">YOUR TRACKING PROGRESS WILL BE DELETED PERMANENTLY</small>
+  </div>
+  <div class="row mt-3">
+    <div class="d-flex align-items-center flex-column">
+      <button
+        (click)="onNoClick()"
+        class="btn btn-secondary btn-secondary-theme mb-3 w-100"
+      >
+        Go back
+      </button>
+      <button
+        (click)="onSubmit()"
+        class="btn deleteBtn mb-3 bg-white"
+      >
+        Delete my account
+      </button>
+    </div>
+  </div>
+</div>
