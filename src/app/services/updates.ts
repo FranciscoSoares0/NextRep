@@ -22,6 +22,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { IUpdate } from '../interfaces/update';
 import { Timestamp } from '@angular/fire/firestore';
+import { updateDoc } from 'firebase/firestore';
 
 @Injectable({
   providedIn: 'root',
@@ -88,7 +89,7 @@ export class UpdateService {
   // Update an existing update
   updateUpdate(userUID: string, updateID: string, updatedData: any): Observable<void> {
     const updateDocRef = doc(this.firestore, `users/${userUID}/updates/${updateID}`);
-    const promise = setDoc(updateDocRef, updatedData).then((response) => {
+    const promise = updateDoc(updateDocRef, updatedData).then((response) => {
       this.toastr.success('Update successfuly edited');
     }).catch((err) => {
       this.toastr.error('Error on editing update: ' + err.message);  

@@ -1,11 +1,13 @@
 import { Injectable, inject } from '@angular/core';
-import { Observable, from,switchMap } from 'rxjs';
+import { Observable, from,switchMap,map } from 'rxjs';
 import { IUser } from '../interfaces/user';
 import {
   Firestore,
   deleteDoc,
   collection,
-  collectionData,
+  query,
+  getDocs,
+  where,
   getDoc,
   doc,
   setDoc,

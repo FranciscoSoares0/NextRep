@@ -42,3 +42,7 @@ testem.log
 Thumbs.db
 
 /src/environments/environment.ts
+
+.firebase
+
+.github/workflows

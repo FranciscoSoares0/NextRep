@@ -38,17 +38,8 @@
               [ngClass]="{
                   'is-invalid': fc['torax'].touched && fc['torax'].invalid
               }"
-              required
               placeholder="Torax (cm)"
           />
-          <div
-            class="text-danger"
-            *ngIf="fc['torax'].touched && fc['torax'].invalid"
-          >
-            <div *ngIf="fc['torax'].errors?.['required']">
-              Enter a torax measurement
-            </div>
-          </div>
         </div>
   
         <div class="form-group">
@@ -62,17 +53,8 @@
               [ngClass]="{
                   'is-invalid': fc['quadril'].touched && fc['quadril'].invalid
               }"
-              required
               placeholder="Hips (cm)"
           />
-          <div
-            class="text-danger"
-            *ngIf="fc['quadril'].touched && fc['quadril'].invalid"
-          >
-            <div *ngIf="fc['quadril'].errors?.['required']">
-              Enter a hips measurement
-            </div>
-          </div>
         </div>
   
         <div class="form-group">
@@ -86,17 +68,8 @@
               [ngClass]="{
                   'is-invalid': fc['cintura'].touched && fc['cintura'].invalid
               }"
-              required
               placeholder="Waist (cm)"
           />
-          <div
-            class="text-danger"
-            *ngIf="fc['cintura'].touched && fc['cintura'].invalid"
-          >
-            <div *ngIf="fc['cintura'].errors?.['required']">
-              Enter a waist measurement
-            </div>
-          </div>
         </div>
         <div class="form-group">
           <label class="text-primary" for="braco">Arm (cm)</label>
@@ -110,16 +83,7 @@
               [ngClass]="{
                   'is-invalid': fc['braco'].touched && fc['braco'].invalid
               }"
-              required
           />
-          <div
-            class="text-danger"
-            *ngIf="fc['braco'].touched && fc['braco'].invalid"
-          >
-            <div *ngIf="fc['braco'].errors?.['required']">
-              Enter an arm measurement
-            </div>
-          </div>
         </div>
         <div class="form-group">
           <label class="text-primary" for="coxa">Leg (cm)</label>
@@ -133,16 +97,7 @@
               [ngClass]="{
                   'is-invalid': fc['coxa'].touched && fc['coxa'].invalid
               }"
-              required
           />
-          <div
-            class="text-danger"
-            *ngIf="fc['coxa'].touched && fc['coxa'].invalid"
-          >
-            <div *ngIf="fc['coxa'].errors?.['required']">
-              Enter a leg measurement
-            </div>
-          </div>
         </div>
       </form>
     </div>

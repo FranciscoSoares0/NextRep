@@ -234,7 +234,7 @@
       <mat-step [stepControl]="measurementsFormGroup" [editable]="true">
         <form [formGroup]="measurementsFormGroup">
           <ng-template matStepLabel
-            >Fill out your body measurements</ng-template
+            >Fill out your body measurements (optional)</ng-template
           >
           <div class="form-group mb-3">
             <label for="torax">Torax (cm)</label>
@@ -248,16 +248,7 @@
               [ngClass]="{
                 'is-invalid': fc3['torax'].touched && fc3['torax'].invalid
               }"
-              required
             />
-            <div
-              class="text-danger"
-              *ngIf="fc3['torax'].touched && fc3['torax'].invalid"
-            >
-              <div *ngIf="fc3['torax'].errors?.['required']">
-                Enter your torax measurement
-              </div>
-            </div>
           </div>
           <div class="form-group mb-3">
             <label for="cintura">Waist (cm)</label>
@@ -271,16 +262,7 @@
               [ngClass]="{
                 'is-invalid': fc3['cintura'].touched && fc3['cintura'].invalid
               }"
-              required
             />
-            <div
-              class="text-danger"
-              *ngIf="fc3['cintura'].touched && fc3['cintura'].invalid"
-            >
-              <div *ngIf="fc3['cintura'].errors?.['required']">
-                Enter your waist measurement
-              </div>
-            </div>
           </div>
           <div class="form-group mb-3">
             <label for="quadril">Hips (cm)</label>
@@ -294,16 +276,7 @@
               [ngClass]="{
                 'is-invalid': fc3['quadril'].touched && fc3['quadril'].invalid
               }"
-              required
             />
-            <div
-              class="text-danger"
-              *ngIf="fc3['quadril'].touched && fc3['quadril'].invalid"
-            >
-              <div *ngIf="fc3['quadril'].errors?.['required']">
-                Enter your hips measurement
-              </div>
-            </div>
           </div>
           <div class="form-group mb-3">
             <label for="braco">Arm (cm)</label>
@@ -317,16 +290,7 @@
               [ngClass]="{
                 'is-invalid': fc3['braco'].touched && fc3['braco'].invalid
               }"
-              required
             />
-            <div
-              class="text-danger"
-              *ngIf="fc3['braco'].touched && fc3['braco'].invalid"
-            >
-              <div *ngIf="fc3['braco'].errors?.['required']">
-                Enter your arm measurement
-              </div>
-            </div>
           </div>
           <div class="form-group mb-3">
             <label for="coxa">Leg (cm)</label>
@@ -340,16 +304,7 @@
               [ngClass]="{
                 'is-invalid': fc3['coxa'].touched && fc3['coxa'].invalid
               }"
-              required
             />
-            <div
-              class="text-danger"
-              *ngIf="fc3['coxa'].touched && fc3['coxa'].invalid"
-            >
-              <div *ngIf="fc3['coxa'].errors?.['required']">
-                Enter your leg measurement
-              </div>
-            </div>
           </div>
           <div>
             <button mat-button matStepperPrevious>Back</button>

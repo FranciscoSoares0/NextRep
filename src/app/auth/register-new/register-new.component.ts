@@ -56,11 +56,11 @@ export class RegisterNewComponent {
   });
 
   measurementsFormGroup = this._formBuilder.group({
-    torax: [null, [Validators.required,Validators.min(1)]],
-    cintura: [null, [Validators.required,Validators.min(1)]],
-    quadril: [null, [Validators.required,Validators.min(1)]],
-    braco: [null, [Validators.required,Validators.min(1)]],
-    coxa: [null, [Validators.required,Validators.min(1)]],
+    torax: [null, [Validators.min(1)]],
+    cintura: [null, [Validators.min(1)]],
+    quadril: [null, [Validators.min(1)]],
+    braco: [null, [Validators.min(1)]],
+    coxa: [null, [Validators.min(1)]],
   });
 
   macrosFormGroup = this._formBuilder.group({

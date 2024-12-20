@@ -120,8 +120,7 @@ export class AuthService {
               // User exists; continue login
               return from(Promise.resolve());
             } else {
-              // User does not exist; sign out and throw an error
-              return from(signOut(this.firebaseAuth)).pipe(
+              return from(ref.user.delete()).pipe(
                 switchMap(() => {
                   throw new Error('User not registered.');
                 })

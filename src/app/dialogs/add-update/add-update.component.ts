@@ -39,12 +39,12 @@ export class AddUpdateComponent {
     }
 
     this.updateForm = this.fb.group({
-      novoPeso: [this.update.novoPeso || '', [Validators.required, Validators.min(1)]],
-      torax: [this.update.torax || '', [Validators.required, Validators.min(1)]],
-      quadril: [this.update.quadril || '', [Validators.required, Validators.min(1)]],
-      cintura: [this.update.cintura || '', [Validators.required, Validators.min(1)]],
-      braco: [this.update.braco || '', [Validators.required, Validators.min(1)]],
-      coxa: [this.update.coxa || '', [Validators.required, Validators.min(1)]],
+      novoPeso: [this.update.novoPeso || null, [Validators.required, Validators.min(1)]],
+      torax: [this.update.torax || null, [Validators.min(1)]],
+      quadril: [this.update.quadril || null, [Validators.min(1)]],
+      cintura: [this.update.cintura || null, [Validators.min(1)]],
+      braco: [this.update.braco || null, [Validators.min(1)]],
+      coxa: [this.update.coxa || null, [ Validators.min(1)]],
     });
   }
 
