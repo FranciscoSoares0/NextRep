@@ -8,13 +8,15 @@ import { AddCardioComponent } from '../../../../dialogs/add-cardio/add-cardio.co
 import {
   faPen,
   faTrash,
+  faComment
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-cardio',
   standalone: true,
-  imports: [CommonModule,AddCardioComponent,FontAwesomeModule],
+  imports: [CommonModule,AddCardioComponent,FontAwesomeModule,MatTooltipModule],
   templateUrl: './cardio.component.html',
   styleUrl: './cardio.component.css'
 })
@@ -29,6 +31,7 @@ export class CardioComponent {
 
   faPen = faPen;
   faTrash = faTrash;
+  faComment = faComment;
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddCardioComponent, {
@@ -41,6 +44,7 @@ export class CardioComponent {
           nome:result.nome,
           minutos:result.minutos,
           calorias:result.calorias,
+          nota:result.nota,
           created : Timestamp.now(),
         }
 
@@ -63,12 +67,14 @@ export class CardioComponent {
           nome:result.nome,
           minutos:result.minutos,
           calorias:result.calorias,
+          nota:result.nota
         }
 
         const exerciseUpdateData = {
           nome : exercicioData.nome,
           minutos : exercicioData.minutos,
           calorias : exercicioData.calorias,
+          nota: exercicioData.nota,
           created : Timestamp.now(),
           exerciseid : exerciseID!,
         }

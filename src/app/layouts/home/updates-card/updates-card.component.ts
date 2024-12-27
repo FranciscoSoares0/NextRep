@@ -1,11 +1,6 @@
-import {
-  Component,
-  inject,
-  Input,
-  ViewChild,
-} from '@angular/core';
+import { Component, inject, Input, ViewChild } from '@angular/core';
 import { BaseChartDirective } from 'ng2-charts';
-import { OnInit,OnDestroy } from '@angular/core';
+import { OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../../services/auth';
 import { UpdateService } from '../../../services/updates';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -22,8 +17,9 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Subject,takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { lineChartOptions } from '../../../chartOptions/chartOptions';
+import { IUpdate } from '../../../interfaces/update';
 
 // Register required Chart.js components
 Chart.register(
@@ -45,7 +41,7 @@ Chart.register(
   styleUrl: './updates-card.component.css',
   providers: [DatePipe],
 })
-export class UpdatesCardComponent implements OnInit,OnDestroy {
+export class UpdatesCardComponent implements OnInit, OnDestroy {
   @Input() userID: string = '';
   @Input() pesoInicial: number = 0;
   @Input() objetivo: number = 0;
@@ -54,6 +50,7 @@ export class UpdatesCardComponent implements OnInit,OnDestroy {
   updateService = inject(UpdateService);
   datePipe = inject(DatePipe);
 
+  updates: Array<IUpdate> = [];
   labels: Array<string> = [];
   dataPeso: Array<number> = [];
   pesoAtual: number = 0;
@@ -82,25 +79,32 @@ export class UpdatesCardComponent implements OnInit,OnDestroy {
   $unsubscribe: Subject<void> = new Subject<void>();
 
   ngOnInit(): void {
-    this.updateService.getUserUpdatesLastXDays(this.userID,'7').pipe(takeUntil(this.$unsubscribe)).subscribe((updates) => {
-      this.pesoAtual = updates[updates.length - 1].novoPeso;
-      this.calculateWeigthPercentage(this.pesoInicial,this.pesoAtual);
+    this.updateService
+      .getUserUpdatesLastXDays(this.userID, '7')
+      .pipe(takeUntil(this.$unsubscribe))
+      .subscribe((updates) => {
+        this.updates = updates;
+        if (this.updates.length > 0) {
+          this.pesoAtual = this.updates[this.updates.length - 1].novoPeso;
+          this.calculateWeigthPercentage(this.pesoInicial, this.pesoAtual);
 
-      updates.forEach((update) => {
-        const date = this.convertTimestampToShortDate(update.created.seconds);
+          this.updates.forEach((update) => {
+            const date = this.convertTimestampToShortDate(
+              update.created.seconds
+            );
 
-        // Avoid duplicates using Set or checking directly
-        if (!this.labels.includes(date!)) {
-          this.labels.push(date!);
-          this.dataPeso.push(update.novoPeso);
+            // Avoid duplicates using Set or checking directly
+            if (!this.labels.includes(date!)) {
+              this.labels.push(date!);
+              this.dataPeso.push(update.novoPeso);
+            }
+          });
+
+          if (this.chart) {
+            this.chart.update();
+          }
         }
-
       });
-
-      if (this.chart) {
-        this.chart.update();
-      }
-    });
   }
 
   ngOnDestroy(): void {

@@ -16,10 +16,10 @@
   <table class="table table-dark table-striped mt-3 text-center">
     <thead *ngIf="cardioExercises && cardioExercises.length > 0">
       <tr>
-        <th scope="col" width="50px" class="d-none d-sm-table-cell">#</th>
-        <th scope="col" width="150px">Actions</th>
-        <th scope="col" width="150px">Exercise</th>
-        <th scope="col" width="150px">Minutes (min)</th>
+        <th scope="col" class="d-none d-sm-table-cell">#</th>
+        <th scope="col">Actions</th>
+        <th scope="col">Exercise</th>
+        <th scope="col">Minutes (min)</th>
         <th scope="col">Calories (kcal)</th>
       </tr>
     </thead>
@@ -30,13 +30,21 @@
         <td>
           <div class="d-flex align-items-center justify-content-center">
             <fa-icon
+                #tooltip="matTooltip"
+                (click)="tooltip.toggle()"
+                class="cursor-pointer me-3"
+                [icon]="faComment"
+                [matTooltip]="exercise.nota"
+                matTooltipPosition="above"
+              ></fa-icon>
+            <fa-icon
               (click)="EditExercise(exercise.id, exercise)"
               class="me-3 cursor-pointer"
               [icon]="faPen"
             ></fa-icon>
             <fa-icon
               (click)="DeleteExercise(exercise.id)"
-              class="me-3 cursor-pointer"
+              class="cursor-pointer"
               [icon]="faTrash"
             ></fa-icon>
           </div>

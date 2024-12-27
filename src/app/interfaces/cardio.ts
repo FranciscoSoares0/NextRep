@@ -5,5 +5,6 @@ export interface ICardio{
     nome:string;
     minutos:number;
     calorias:number;
+    nota?:string;
     created : Timestamp
 }

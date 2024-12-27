@@ -21,6 +21,7 @@ export class AddExerciseComponent {
     repeticoes:0,
     pesoAtual:0,
     id:'',
+    nota:'',
     created:Timestamp.now()
   };
 
@@ -41,6 +42,7 @@ export class AddExerciseComponent {
       series: [this.exercicio.series || '', [Validators.required, Validators.min(1)]],
       repeticoes: [this.exercicio.repeticoes || '', [Validators.required, Validators.min(0)]],
       pesoAtual: [this.exercicio.pesoAtual || '', [Validators.required, Validators.min(0)]],
+      nota: [this.exercicio.nota || ''],
     });
   }
 

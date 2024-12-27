@@ -35,8 +35,9 @@
     </div>
   </div>
   <hr>
-  <small>Last 7 days</small>
-  <div class="text-center mt-3">  
+  <small *ngIf="updates.length > 0">Last 7 days</small>
+  <small *ngIf="updates.length == 0">No updates in the last 7 days</small>
+  <div *ngIf="updates.length > 0" class="text-center mt-3">  
     <canvas
       *ngIf="labels.length > 0"
       baseChart

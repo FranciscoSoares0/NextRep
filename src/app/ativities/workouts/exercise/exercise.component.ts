@@ -12,15 +12,17 @@ import { Timestamp } from 'firebase/firestore';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faCircleChevronLeft,
+  faComment
 } from '@fortawesome/free-solid-svg-icons';
 import { ExerciseUpdateService } from '../../../services/exerciseUpdate';
 import { IExerciseUpdate } from '../../../interfaces/exerciseUpdate';
 import { CommonModule } from '@angular/common';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-exercise',
   standalone: true,
-  imports: [NavBarComponent,FontAwesomeModule,RouterLink,CommonModule],
+  imports: [NavBarComponent,FontAwesomeModule,RouterLink,CommonModule,MatTooltipModule],
   templateUrl: './exercise.component.html',
   styleUrl: './exercise.component.css'
 })
@@ -44,10 +46,12 @@ export class ExerciseComponent implements OnInit, OnDestroy{
     series:0,
     repeticoes:0,
     pesoAtual:0,
+    nota:'',
     created : Timestamp.now()
   }
 
   faCircleChevronLeft = faCircleChevronLeft;
+  faComment = faComment;
 
   $unsubscribe: Subject<void> = new Subject<void>();
 

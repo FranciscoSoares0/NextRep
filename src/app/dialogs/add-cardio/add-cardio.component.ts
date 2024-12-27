@@ -20,6 +20,7 @@ export class AddCardioComponent {
     minutos:0,
     calorias:0,
     id:'',
+    nota:'',
     created:Timestamp.now()
   };
 
@@ -39,6 +40,7 @@ export class AddCardioComponent {
       nome: [this.exercicio.nome || '', Validators.required],
       minutos: [this.exercicio.minutos || '', [Validators.required, Validators.min(0)]],
       calorias: [this.exercicio.calorias || '', [Validators.required, Validators.min(1)]],
+      nota:[this.exercicio.nota || '']
     });
   }
 

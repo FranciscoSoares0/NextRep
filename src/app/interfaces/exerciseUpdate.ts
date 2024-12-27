@@ -7,5 +7,6 @@ export interface IExerciseUpdate{
     series:number;
     repeticoes:number;
     peso:number;
+    nota?:string;
     created: Timestamp;
 }

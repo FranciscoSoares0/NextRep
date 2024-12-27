@@ -4,7 +4,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
   faPen,
   faTrash,
-  faMagnifyingGlassChart
+  faMagnifyingGlassChart,
+  faComment,
 } from '@fortawesome/free-solid-svg-icons';
 import { AddExerciseComponent } from '../../../../dialogs/add-exercise/add-exercise.component';
 import { Timestamp } from 'firebase/firestore';
@@ -13,11 +14,12 @@ import { ExercisesService } from '../../../../services/exercises';
 import { ExerciseUpdateService } from '../../../../services/exerciseUpdate';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-weigth-training',
   standalone: true,
-  imports: [FontAwesomeModule,AddExerciseComponent,RouterLink,CommonModule],
+  imports: [FontAwesomeModule,AddExerciseComponent,RouterLink,CommonModule,MatTooltipModule],
   templateUrl: './weigth-training.component.html',
   styleUrl: './weigth-training.component.css'
 })
@@ -35,6 +37,7 @@ export class WeigthTrainingComponent {
   faPen = faPen;
   faTrash = faTrash;
   faMagnifyingGlassChart = faMagnifyingGlassChart;
+  faComment = faComment;
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddExerciseComponent, {
@@ -48,6 +51,7 @@ export class WeigthTrainingComponent {
           series:result.series,
           repeticoes:result.repeticoes,
           pesoAtual:result.pesoAtual,
+          nota:result.nota,
           created : Timestamp.now(),
         }
 
@@ -73,13 +77,15 @@ export class WeigthTrainingComponent {
           series:result.series,
           repeticoes:result.repeticoes,
           pesoAtual:result.pesoAtual,
+          nota:result.nota,
         }
 
         const exerciseUpdateData = {
           series : exercicioData.series,
           repeticoes : exercicioData.repeticoes,
           peso : exercicioData.pesoAtual,
-          created : Timestamp.now(),
+          nota: exercicioData.nota,
+          created : exercicioData.created,
           exerciseid : exerciseID!,
         }
 
