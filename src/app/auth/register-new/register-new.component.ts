@@ -212,7 +212,7 @@ export class RegisterNewComponent {
   calcularCalorias(genero:string,dataNascimento:string,peso:number,altura:number,atividade:string,objetivo:number){
     let bmr = 0, tdee = 0, calories = 0;
     let idade = this.calcularIdade(dataNascimento);
-    if(genero == "Masculine")
+    if(genero == "Male")
       bmr = (10*peso) + (6.25 * altura) - (5*idade) + 5;
     else
       bmr = (10*peso) + (6.25 * altura) - (5*idade) - 161;
