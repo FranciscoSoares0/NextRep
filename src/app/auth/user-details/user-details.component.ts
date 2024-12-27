@@ -135,7 +135,7 @@ export class UserDetailsComponent implements OnInit,OnDestroy {
 
   calcularCalorias(genero:string,dataNascimento:string,peso:number,altura:number,atividade:string,objetivo:number){
     let bmr = 0, tdee = 0, calories = 0;
-    if(genero == "Masculine")
+    if(genero == "Male")
       bmr = (10*peso) + (6.25 * altura) - (5*this.calcularIdade(dataNascimento)) + 5;
     else
       bmr = (10*peso) + (6.25 * altura) - (5*this.calcularIdade(dataNascimento)) - 161;
