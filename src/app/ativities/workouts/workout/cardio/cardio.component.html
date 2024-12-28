@@ -16,11 +16,12 @@
   <table class="table table-dark table-striped mt-3 text-center">
     <thead *ngIf="cardioExercises && cardioExercises.length > 0">
       <tr>
-        <th scope="col" class="d-none d-sm-table-cell">#</th>
-        <th scope="col">Actions</th>
-        <th scope="col">Exercise</th>
-        <th scope="col">Minutes (min)</th>
-        <th scope="col">Calories (kcal)</th>
+        <th scope="col" class="d-none d-sm-table-cell" width="15%">#</th>
+        <th scope="col" width="15%">Actions</th>
+        <th scope="col" width="25%">Exercise</th>
+        <th scope="col" width="15%">Minutes (min)</th>
+        <th scope="col" width="15%">Calories (kcal)</th>
+        <th scope="col" width="15%"></th>
       </tr>
     </thead>
     <tbody>
@@ -28,15 +29,7 @@
       <tr>
         <th scope="row" class="d-none d-sm-table-cell">{{ i + 1 }}</th>
         <td>
-          <div class="d-flex align-items-center justify-content-center">
-            <fa-icon
-                #tooltip="matTooltip"
-                (click)="tooltip.toggle()"
-                class="cursor-pointer me-3"
-                [icon]="faComment"
-                [matTooltip]="exercise.nota"
-                matTooltipPosition="above"
-              ></fa-icon>
+          <div class="d-flex align-items-center">
             <fa-icon
               (click)="EditExercise(exercise.id, exercise)"
               class="me-3 cursor-pointer"
@@ -44,14 +37,24 @@
             ></fa-icon>
             <fa-icon
               (click)="DeleteExercise(exercise.id)"
-              class="cursor-pointer"
+              class="cursor-pointer me-3"
               [icon]="faTrash"
             ></fa-icon>
+            <fa-icon
+                *ngIf="exercise.nota"
+                #tooltip="matTooltip"
+                (click)="tooltip.toggle()"
+                class="cursor-pointer"
+                [icon]="faComment"
+                [matTooltip]="exercise.nota"
+                matTooltipPosition="above"
+              ></fa-icon>
           </div>
         </td>
         <td>{{ exercise.nome }}</td>
         <td>{{ exercise.minutos }}</td>
         <td>{{ exercise.calorias }}</td>
+        <td></td>
       </tr>
       } @empty{
       <tr>

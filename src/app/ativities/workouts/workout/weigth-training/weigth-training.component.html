@@ -22,15 +22,15 @@
 </div>
 
 <div class="row table-responsive">
-  <table class="table table-dark text-center">
+  <table class="table table-dark table-striped text-center">
     <thead *ngIf="exercises && exercises.length > 0">
       <tr>
-        <th scope="col" width="50px" class="d-none d-sm-table-cell">#</th>
-        <th scope="col" width="150px">Actions</th>
-        <th scope="col" width="50px">Exercise</th>
-        <th scope="col" width="50px">Sets</th>
-        <th scope="col" width="50px">Reps</th>
-        <th scope="col" width="50px">Current weight (kg)</th>
+        <th scope="col" width="15%" class="d-none d-sm-table-cell">#</th>
+        <th scope="col" width="15%">Actions</th>
+        <th scope="col" width="25%">Exercise</th>
+        <th scope="col" width="15%">Sets</th>
+        <th scope="col" width="15%">Reps</th>
+        <th scope="col" width="15%">Current weight (kg)</th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +38,7 @@
       <tr>
         <th scope="row" class="d-none d-sm-table-cell">{{ i + 1 }}</th>
         <td>
-          <div class="d-flex align-items-center justify-content-center">
+          <div class="d-flex align-items-center">
             <fa-icon
               [routerLink]="[
                 '/calendar/workout',
@@ -49,14 +49,6 @@
               class="cursor-pointer me-3"
               [icon]="faMagnifyingGlassChart"
             ></fa-icon>
-              <fa-icon
-                #tooltip="matTooltip"
-                (click)="tooltip.toggle()"
-                class="cursor-pointer me-3"
-                [icon]="faComment"
-                [matTooltip]="exercise.nota"
-                matTooltipPosition="above"
-              ></fa-icon>
             <fa-icon
               (click)="EditExercise(exercise.id, exercise)"
               class="me-3 cursor-pointer"
@@ -64,9 +56,18 @@
             ></fa-icon>
             <fa-icon
               (click)="DeleteExercise(exercise.id)"
-              class="cursor-pointer"
+              class="cursor-pointer me-3"
               [icon]="faTrash"
             ></fa-icon>
+            <fa-icon
+                *ngIf="exercise.nota"
+                #tooltip="matTooltip"
+                (click)="tooltip.toggle()"
+                class="cursor-pointer"
+                [icon]="faComment"
+                [matTooltip]="exercise.nota"
+                matTooltipPosition="above"
+              ></fa-icon>
           </div>
         </td>
         <td>{{ exercise.nome }}</td>
