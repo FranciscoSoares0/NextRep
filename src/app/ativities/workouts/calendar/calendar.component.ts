@@ -285,6 +285,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
     // Create the delete icon
     const deleteButton = document.createElement('span');
     deleteButton.classList.add('delete-event-icon');
+    deleteButton.style.marginLeft = '2px';
     deleteButton.innerHTML = 'x';
     deleteButton.style.cursor = 'pointer'; // Add a pointer cursor
 
@@ -307,12 +308,13 @@ export class CalendarComponent implements OnInit, OnDestroy {
     eventContainer.style.display = 'flex'; // Flexbox layout
     eventContainer.style.justifyContent = 'space-between'; // Space between title and icon
     eventContainer.style.alignItems = 'center'; // Align vertically in the center
-    eventContainer.style.padding = '2px'; // Optional: Padding for better spacing
+    eventContainer.style.padding = '0px 5px'; // Optional: Padding for better spacing
     eventContainer.style.backgroundColor = arg.event.extendedProps.color;
 
     // Add the event title and delete icon to the container
     const eventTitle = document.createElement('span');
     eventTitle.classList.add('event-title');
+    eventTitle.style.overflow = 'hidden';
     eventTitle.textContent = arg.event.title;
 
     eventContainer.appendChild(eventTitle); // Add the title

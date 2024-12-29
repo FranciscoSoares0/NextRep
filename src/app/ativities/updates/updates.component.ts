@@ -138,6 +138,7 @@ export class UpdatesComponent implements OnInit,OnDestroy {
     console.log(updateData)
     const dialogRef = this.dialog.open(AddUpdateComponent, {
       width: '500px',  // Define a largura do diálogoas
+      height:'100vh',
       data:{
         update:updateData,
       },
@@ -170,7 +171,7 @@ export class UpdatesComponent implements OnInit,OnDestroy {
   openDialog(): void {
     const dialogRef = this.dialog.open(AddUpdateComponent, {
       width: '500px',  // Define a largura do diálogo
-      disableClose: true, // Prevents closing when clicking outside
+      height:'100vh',
       autoFocus: true,    // Automatically focuses on the first focusable element
     });
 

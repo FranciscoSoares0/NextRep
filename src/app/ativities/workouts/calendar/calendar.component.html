@@ -77,7 +77,7 @@
           <tbody>
             @for(treino of treinos;track treino.id; let i = $index){
             <tr [attr.data-id]="treino.id">
-              <td><div [routerLink]="['/calendar/workout',treino.id]" draggable="true" [attr.data-color]="treino.cor" [attr.data-id]="treino.id" class="fc-event fc-daygrid-event cursor-pointer" [ngStyle]="{ 'background-color': treino.cor,'padding':'2px' }">{{ treino.nome }}</div></td>
+              <td><div [routerLink]="['/calendar/workout',treino.id]" draggable="true" [attr.data-color]="treino.cor" [attr.data-id]="treino.id" class="fc-event fc-daygrid-event cursor-pointer" [ngStyle]="{ 'background-color': treino.cor,'padding':'0px 5px' }">{{ treino.nome }}</div></td>
               <td>
                 <div>
                   <fa-icon

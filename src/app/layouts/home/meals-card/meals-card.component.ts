@@ -132,9 +132,10 @@ export class MealsCardComponent implements OnInit,OnDestroy,OnChanges {
   }
 
   calculatePercentagens(): void {
-    this.percentage = ((this.usadasCalorias + this.caloriasCardio) / this.calorias) * 100;
+    this.percentage = (this.usadasCalorias / (this.calorias+ this.caloriasCardio)) * 100;
     this.percentageProteinas = (this.usadasProteinas / this.proteinas) * 100;
     this.percentageGorduras = (this.usadasGorduras / this.gorduras) * 100;
     this.percentageHidratos = (this.usadasHidratos / this.hidratos) * 100;
   }
+
 }
