@@ -96,12 +96,12 @@ export class CalendarComponent implements OnInit, OnDestroy {
             const eventDate = new Date(event.start.seconds * 1000); // Convert seconds to milliseconds
             const endDate = new Date(event.end.seconds * 1000); // Convert seconds to milliseconds
             
-  
+            console.log("eventDate",eventDate)
             // Return the event data formatted for FullCalendar
             return {
               title: this.treinos.filter((e) => e.id == event.workoutid)[0].nome, // Event title
-              start: eventDate.toISOString().split("T")[0], // Start date as Date object
-              end: endDate.toISOString().split("T")[0],     // End date as Date object
+              start: eventDate, // Start date as Date object
+              end: endDate,     // End date as Date object
               id: event.id, // Event ID (if needed)
               borderColor: this.treinos.filter((e) => e.id == event.workoutid)[0].cor,
               extendedProps: {
@@ -183,9 +183,11 @@ export class CalendarComponent implements OnInit, OnDestroy {
     } else {
       // If no event exists, proceed with adding the new event
       if(info){
+        const startDate = new Date(info.event.start);
+        startDate.setHours(0, 0, 0, 0);
         const eventData = {
-          start: info.event.start,
-          end: info.event.start,
+          start: startDate,
+          end: startDate,
           workoutid: info.event.id,
         };
     
@@ -206,9 +208,11 @@ export class CalendarComponent implements OnInit, OnDestroy {
       info.revert(); // Revert the event drop (i.e., return the event to its original position)
     } else {
       if (info) {
+        const startDate = new Date(info.event.start);
+        startDate.setHours(0, 0, 0, 0);
         const eventData = {
-          start: info.event.start,
-          end: info.event.start,
+          start: startDate,
+          end: startDate,
         };
 
         this.calendarService
@@ -309,6 +313,8 @@ export class CalendarComponent implements OnInit, OnDestroy {
     eventContainer.style.justifyContent = 'space-between'; // Space between title and icon
     eventContainer.style.alignItems = 'center'; // Align vertically in the center
     eventContainer.style.padding = '0px 5px'; // Optional: Padding for better spacing
+    eventContainer.style.width = '100%'; // Optional: Padding for better spacing
+    eventContainer.style.borderRadius = '3px'; // Optional: Padding for better spacing
     eventContainer.style.backgroundColor = arg.event.extendedProps.color;
 
     // Add the event title and delete icon to the container
